@@ -1,0 +1,66 @@
+{
+  "submissionDate": "2020-11-13",
+  "details": {
+    "surname": "claimant-last-name",
+    "forename": "claimant-first-name",
+    "title": "Ms",
+    "nino": "RN000065C",
+    "dob": "1970-8-08",
+    "postcode": "LS1 7XX"
+  },
+  "health": {
+    "conditions": [
+      {
+        "healthCondition": "Ab",
+        "conditionDescription": "Ab",
+        "approxStartDate": "1999-8-08"
+      }
+    ],
+    "healthProfessionalsDetails": [
+
+    ]
+  },
+  "dailyLivingActivity": {
+    "preparingFood": {
+      "conditionAffected": false
+    },
+    "eatingDrinking": {
+      "conditionAffected": false
+    },
+    "manageTreatment": {
+      "conditionAffected": false
+    },
+    "washingBathing": {
+      "conditionAffected": false
+    },
+    "toiletIncontinence": {
+      "conditionAffected": false
+    },
+    "dressingUndressing": {
+      "conditionAffected": false
+    },
+    "commCognitive": {
+      "conditionAffected": false
+    },
+    "reading": {
+      "conditionAffected": false
+    },
+    "social": {
+      "conditionAffected": false
+    },
+    "manageMoney": {
+      "conditionAffected": false
+    }
+  },
+  "mobility": {
+    "planningNavigate": {
+      "conditionAffected": false
+    },
+    "movingAround": {
+      "conditionAffected": false
+    }
+  },
+  "other": {
+    "conditionAffected": false
+  }
+}

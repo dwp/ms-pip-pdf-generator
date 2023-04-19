@@ -1,0 +1,22 @@
+spring:
+  main:
+    banner-mode: 'off'
+  jmx:
+    enabled: false
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, info, health
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true

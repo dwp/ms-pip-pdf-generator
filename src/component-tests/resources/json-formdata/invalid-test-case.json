@@ -1,0 +1,92 @@
+{
+  "details": {
+    "surname": "claimant_last_name",
+    "forename": "claimant_first_name",
+    "title": "MR",
+    "nino": "LLLLLLLLLL",
+    "dob": "1970-8-08"
+  },
+  "health": {
+    "conditions": [
+      {
+        "healthCondition": "Kidney Failure",
+        "approxStartDate": "1999-8-08"
+      }
+    ],
+    "healthProfessionalsDetails": [
+      {
+        "fullName": "Doctor Who",
+        "profession": "GP",
+        "phoneNumber": "07777",
+        "address": {
+          "line1": "Quarry House Leeds",
+          "town": "Leeds",
+          "country": "England",
+          "postcode": "LS1 1XX"
+        },
+        "lastSeen": "last week"
+      }
+    ]
+  },
+  "dailyLivingActivity": {
+    "preparingFood": {
+      "conditionAffected": false,
+      "description": "reason not be able to preparing food"
+    },
+    "eatingDrinking": {
+      "conditionAffected": false,
+      "useFeedingTube": "sometimes",
+      "description": "reason not be able to drink and eat unassisted"
+    },
+    "manageTreatment": {
+      "conditionAffected": false,
+      "description": "reason not be able to apply treatment"
+    },
+    "washingBathing": {
+      "conditionAffected": false,
+      "description": "reason not be able to washing"
+    },
+    "toiletIncontinence": {
+      "conditionAffected": false,
+      "description": "reason not be able to  go to toilet unassisted"
+    },
+    "dressingUndressing": {
+      "conditionAffected": false,
+      "description": "reason not be able to dressing unassisted"
+    },
+    "commCognitive": {
+      "conditionAffected": false,
+      "description": "reason not be able to communicate"
+    },
+    "reading": {
+      "conditionAffected": false,
+      "description": "reason not be able to read"
+    },
+    "social": {
+      "conditionAffected": false,
+      "description": "reason not be able to social mixture withe others"
+    },
+    "manageMoney": {
+      "conditionAffected": false,
+      "description": "reason not be able to manage own finance"
+    }
+  },
+  "mobility": {
+    "planningNavigate": {
+      "conditionAffected": false,
+      "description": "reason not be able to plan or navigate"
+    },
+    "movingAround": {
+      "conditionAffected": false,
+      "description": "reason not be able to move",
+      "severity": {
+        "grade": "20m",
+        "note": "severity note"
+      }
+    }
+  },
+  "other": {
+    "conditionAffected": false,
+    "description": "additional information to support claim"
+  }
+}

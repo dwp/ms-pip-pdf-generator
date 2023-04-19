@@ -1,0 +1,17 @@
+language: java
+install: true
+
+branches:
+  only:
+    - master
+
+stages:
+  - unit-test
+  - owasp-check
+
+jobs:
+  include:
+    - stage: unit-test
+      script: mvn clean test
+    - stage: owasp-check
+      script: mvn clean verify -Dmaven.test.skip=true -Dgpg.skip=true

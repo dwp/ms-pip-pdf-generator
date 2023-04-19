@@ -1,0 +1,82 @@
+version: "2.1"
+
+networks:
+  ms-pip-pdf-generator:
+
+services:
+  ms-pip2-pdf-generator:
+    image: ${GITLAB_IMAGE}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - ms-pip-pdf-generator
+    ports:
+      - "8080:8080"
+      - "5009:5009"
+    depends_on:
+      - ms-html-to-pdfa
+      - localstack
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - HTML_PDF_GENERATOR_BASE_URL=http://ms-html-to-pdfa:6677
+      - HTML_PDF_GENERATOR_ENDPOINT_PATH=generatePdf
+      - HTML_PDF_GENERATOR_HTML_TO_PDF_CONFORMANCE_LEVEL=PDFA_1_A
+      - AWS_S3_AWS_REGION=eu-west-2
+      - AWS_S3_ENDPOINT_OVERRIDE=http://localstack:4566
+      - AWS_S3_PATH_STYLE_ENABLE=true
+      - AWS_ACCESS_KEY_ID=awsaccesskey
+      - AWS_S3_BUCKET=pip-bucket
+      - AWS_ENCRYPTION_KMS_OVERRIDE=http://localstack:4566
+      - AWS_ENCRYPTION_DATA_KEY=alias/localstack
+      - AWS_SECRET_ACCESS_KEY=its-a-secret
+    entrypoint:
+      - java
+      - -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5009
+      - -jar
+      - /app.jar
+
+  ms-html-to-pdfa:
+    image: ${MS_HTML_TO_PDFA_IMAGE}
+    networks:
+      - ms-pip-pdf-generator
+    ports:
+      - "6677:6677"
+
+  localstack:
+    image: ${LOCALSTACK_IMAGE}
+    environment:
+      SERVICES: kms, s3
+      AWS_DEFAULT_REGION: eu-west-2
+      HOSTNAME_EXTERNAL: localstack
+    volumes:
+      - ./docker-compose/localstack:/docker-entrypoint-initaws.d
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:4566" ]
+    ports:
+      - "4566:4566"
+    networks:
+      - ms-pip-pdf-generator
+
+  api-test:
+    container_name: api-test
+    image: '${MAVEN_IMAGE}'
+    depends_on:
+      localstack:
+        condition: service_healthy
+    entrypoint: /bin/bash -c
+    command:
+      - mvn ${MVN_OPTS} verify -Papi-component-tests
+    working_dir: /usr/src
+    environment:
+      MS_PIP_PDF_GENERATOR_BASE_URI: http://ms-pip2-pdf-generator:8080
+      AWS_S3_ENDPOINT_OVERRIDE: http://localstack:4566
+      AWS_REGION: eu-west-2
+      AWS_S3_BUCKET: pip-bucket
+    volumes:
+      - .:/usr/src
+      - ${MVN_M2}:/root/.m2
+      - ${MVN_SETTINGS_FILE_SAAS}:/root/.m2/settings.xml
+      - ./test/reports:/usr/src/target/test-reports
+    networks:
+      - ms-pip-pdf-generator
