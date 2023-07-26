@@ -22,7 +22,11 @@ stages:
   - image-push
   - update-project-metadata
   - create-schedules
-  - repo-gen
+  - update-changelog
+  - release-mr-main
+  - release-tag
+  - release-update-version
+  - release-mr-develop
   - open-source
 
 include:
@@ -49,7 +53,7 @@ api-test:
     MVN_OPTS: '-Dmaven.repo.local=~/.m2/repository'
     MVN_M2: "~/.m2"
   services:
-    - name: docker:dind@sha256:29f11c7c63c84a51c45901701c2d16336c9abc6365d3a69136884b3cf15e2cc9
+    - name: docker:dind@sha256:5edfe3067bdd8b76818b036d8ef61846696af4d458ba527356c5484fcd692c2a
       command: [
         "--registry-mirror=https://docker-cache.nonprod.dwpcloud.uk:5000",
         "--insecure-registry=nexus.service.health-dev.dwpcloud.uk:5000" ]
@@ -79,4 +83,4 @@ create-develop-nightly-schedule:
 default:
   tags:
     - docker
-  image: alpine@sha256:124c7d2707904eea7431fffe91522a01e5a861a624ee31d03372cc1d138a3126
+  image: alpine@sha256:02bb6f428431fbc2809c5d1b41eab5a68350194fb508869a33cb1af4444c9b11
