@@ -1,19 +1,20 @@
 package uk.gov.dwp.health.pip.pdf.generator.api;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import uk.gov.dwp.health.pip.pdf.generator.exception.FormSpecificationNotFoundException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.InvalidFormDataException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfGenerationException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.TaskException;
 import uk.gov.dwp.health.pip.pdf.generator.openapi.model.FailureResponse;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class AppControllerAdviseTest {
 
@@ -77,5 +78,17 @@ class AppControllerAdviseTest {
         "assert response",
         () -> assertEquals(HttpStatus.BAD_REQUEST, actual.getStatusCode()),
         () -> assertEquals("fail to valid form data", actual.getBody().getMessage()));
+  }
+
+  @Test
+  @DisplayName("Test handle fail to find form specification not found returned")
+  void testHandleFailToFindFormSpecificationNotFoundReturned() {
+    FormSpecificationNotFoundException ex = new FormSpecificationNotFoundException(
+        "fail to find form spec");
+    ResponseEntity<FailureResponse> actual = underTest.handleFormSpecificationNotFound(ex);
+    assertAll(
+        "assert response",
+        () -> assertEquals(HttpStatus.NOT_FOUND, actual.getStatusCode()),
+        () -> assertEquals("fail to find form spec", actual.getBody().getMessage()));
   }
 }

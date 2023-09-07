@@ -1,0 +1,19 @@
+$schema: https://gitlab.com/dwp/secure-development/schema/project-metadata/-/raw/v1.0.0/schema/project-metadata.json
+
+schema_version: 1.0.0
+
+project:
+  - project_id: 31923141
+    component_name: ms-pip-pdf-generator
+
+    version: 0-0-0
+
+    last_verified:
+      date: "2023-08-16"
+      name: "@jack.dempster1"
+
+    tags:
+      payments: false
+      personally_identifying_information: false
+
+    cmdb_id: 1d3e07e81b7d14500b3732a0dc4bcbf4

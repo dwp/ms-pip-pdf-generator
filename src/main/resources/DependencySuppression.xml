@@ -2,15 +2,6 @@
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
   <suppress>
     <notes><![CDATA[
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.13.2.2</version>
-      ]]></notes>
-    <cve>CVE-2022-42003</cve>
-    <cve>CVE-2022-42004</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
       <groupId>uk.gov.dwp.health</groupId>
       <artifactId>data-cryptography</artifactId>
       file name: bc-fips-1.0.2.3.jar
@@ -23,16 +14,28 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-    <groupId>org.yaml</groupId>
-    <artifactId>snakeyaml</artifactId>
-    <version>1.33</version>
-      ]]></notes>
-    <cve>CVE-2022-1471</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
    file name: jackson-databind-2.13.2.2.jar
    ]]></notes>
     <cve>CVE-2023-35116</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: netty-handler-4.1.94.Final.jar
+   ]]></notes>
+    <cve>CVE-2023-4586</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: guava-14.0.1.jar
+   ]]></notes>
+    <cve>CVE-2023-2976</cve>
+    <cve>CVE-2020-8908</cve>
+    <cve>CVE-2018-10237</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: tomcat-embed-core-9.0.79.jar
+   ]]></notes>
+    <cve>CVE-2023-41080</cve>
   </suppress>
 </suppressions>

@@ -3,12 +3,20 @@ variables:
   PRODUCT: pip-apply
   # Config
   BUILD_TYPE: MAVEN
-  MAVEN_IMAGE: "maven:3-jdk-11"
-  MVN_OPTS: "-DLOG_LEVEL=INFO"
+  MAVEN_IMAGE: "maven:3-openjdk-17"
+  MVN_OPTS: "-DLOG_LEVEL=INFO -DtargetClasses=${PITEST_TARGET_CLASSES} -DtargetTests=${PITEST_TARGET_TEST_CLASSES} -DexcludedTestClasses=${PITEST_EXCLUDED_TEST_CLASSES}"
   MVN_CLI_OPTS: "--batch-mode"
   REPO_OWNER: "Team Goldcrest"
   REPO_PATTERN: "V3 CI"
   GITHUB_REPO_NAME: ms-pip-pdf-generator
+  PIP_APPLY_MOCKS_NAME: pip-apply-mocks
+  PIP_APPLY_MOCKS_VERSION: "develop"
+  MS_HTML_TO_PDFA_NAME: ms-html-to-pdfa
+  MS_HTML_TO_PDFA_VERSION: "develop"
+  # Duplicated config from pom to run in pipeline
+  PITEST_TARGET_CLASSES: "uk.gov.dwp.health.pip.pdf.generator.*"
+  PITEST_TARGET_TEST_CLASSES: "uk.gov.dwp.health.pip.pdf.generator.*"
+  PITEST_EXCLUDED_TEST_CLASSES: "**.*IT"
 
 stages:
   - update-version
@@ -43,6 +51,8 @@ required-fragment-check:
     - eval $(aws ecr get-login --no-include-email --region eu-west-2 | sed 's|https://||')
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - export GITLAB_IMAGE="$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:${CI_COMMIT_SHA:0:8}"
+    - export PIP_APPLY_MOCKS_IMAGE=$(aws ssm get-parameter --name "/artifact/$PRODUCT/$PIP_APPLY_MOCKS_NAME/$PIP_APPLY_MOCKS_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
+    - export MS_HTML_TO_PDFA_IMAGE=$(aws ssm get-parameter --name "/artifact/shared/$MS_HTML_TO_PDFA_NAME/$MS_HTML_TO_PDFA_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
 
 api-test:
   extends: .docker-compose-run
@@ -52,11 +62,6 @@ api-test:
     DOCKER_COMPOSE_COMMAND: "--exit-code-from api-test"
     MVN_OPTS: '-Dmaven.repo.local=~/.m2/repository'
     MVN_M2: "~/.m2"
-  services:
-    - name: docker:dind@sha256:5edfe3067bdd8b76818b036d8ef61846696af4d458ba527356c5484fcd692c2a
-      command: [
-        "--registry-mirror=https://docker-cache.nonprod.dwpcloud.uk:5000",
-        "--insecure-registry=nexus.service.health-dev.dwpcloud.uk:5000" ]
   <<: *prepare-test
   after_script:
     - docker logout
@@ -78,6 +83,12 @@ create-develop-nightly-schedule:
     SCHEDULE_BRANCH: develop
     SCHEDULE_CRON: "0 04 * * *"
     RANDOMIZE_MINS: "true"
+
+trivy-container:
+  extends: .trivy-container-base
+  variables:
+    HIGH_SUPPRESSIONS: "CVE-2023-21930"
+
 
 ### DEFAULT RUNNER ###
 default:

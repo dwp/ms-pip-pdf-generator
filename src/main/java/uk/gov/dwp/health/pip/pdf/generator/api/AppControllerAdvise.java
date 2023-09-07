@@ -1,5 +1,6 @@
 package uk.gov.dwp.health.pip.pdf.generator.api;
 
+import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,12 +9,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import uk.gov.dwp.health.pip.pdf.generator.exception.FormSpecificationNotFoundException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.InvalidFormDataException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfGenerationException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.TaskException;
 import uk.gov.dwp.health.pip.pdf.generator.openapi.model.FailureResponse;
-
-import javax.validation.ConstraintViolationException;
 
 @Slf4j
 @Component
@@ -51,12 +51,18 @@ public class AppControllerAdvise {
 
   @ExceptionHandler(
       value = {
-        ConstraintViolationException.class,
-        MethodArgumentNotValidException.class,
-        HttpMessageNotReadableException.class,
+          ConstraintViolationException.class,
+          MethodArgumentNotValidException.class,
+          HttpMessageNotReadableException.class,
       })
   public final ResponseEntity<FailureResponse> handle400(Exception ex) {
-    log.error("Request failed on {}", ex.getMessage());
     return responseWithFailureResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(FormSpecificationNotFoundException.class)
+  public final ResponseEntity<FailureResponse> handleFormSpecificationNotFound(
+      FormSpecificationNotFoundException ex) {
+    log.error("Form specification not found with message: {}", ex.getMessage());
+    return responseWithFailureResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
   }
 }

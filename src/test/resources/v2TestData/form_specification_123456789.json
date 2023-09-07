@@ -1,0 +1,2770 @@
+{
+  "id": "123456789",
+  "version": 1,
+  "language": "en",
+  "dataCaptureType": "HEALTH",
+  "views": [
+    {
+      "reference": "landing",
+      "title": "Tell us how your health condition or disability affects you",
+      "type": "TASK_LIST",
+      "uiElements": [
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\">Download and read the instructions <a class=\"govuk-link\" href=\"/help\", download>Help with answering questions and providing evidence (PDF)</a> </p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You can download a copy of your completed application when you've finished."
+        }
+      ],
+      "sections": [
+        {
+          "reference": "about-your-health-sct",
+          "title": "Tell us about your health"
+        },
+        {
+          "reference": "daily-activity-sct",
+          "title": "Tell us about your daily living activities"
+        },
+        {
+          "reference": "mobility-sct",
+          "title": "Tell us about your mobility activities"
+        },
+        {
+          "reference": "additional-information-sct",
+          "title": "Tell us about anything else"
+        },
+        {
+          "reference": "submission-sct",
+          "title": "Upload supporting evidence and apply"
+        }
+      ],
+      "tasks": [
+        {
+          "reference": "about-your-health",
+          "parentReference": "about-your-health-sct",
+          "title": "About your health",
+          "next": [
+            {
+              "view": "condition"
+            }
+          ]
+        },
+        {
+          "reference": "about-your-health-professionals",
+          "parentReference": "about-your-health-sct",
+          "title": "About your health or care professionals",
+          "next": [
+            {
+              "view": "health-professionals-introduction"
+            }
+          ]
+        },
+        {
+          "reference": "preparing-food",
+          "parentReference": "daily-activity-sct",
+          "title": "Preparing food",
+          "next": [
+            {
+              "view": "preparing-food-affected"
+            }
+          ]
+        },
+        {
+          "reference": "eating-and-drinking",
+          "parentReference": "daily-activity-sct",
+          "title": "Eating and drinking",
+          "next": [
+            {
+              "view": "eating-and-drinking-affected"
+            }
+          ]
+        },
+        {
+          "reference": "managing-treatments",
+          "parentReference": "daily-activity-sct",
+          "title": "Managing treatments",
+          "next": [
+            {
+              "view": "managing-treatments-affected"
+            }
+          ]
+        },
+        {
+          "reference": "washing-and-bathing",
+          "parentReference": "daily-activity-sct",
+          "title": "Washing and bathing",
+          "next": [
+            {
+              "view": "washing-and-bathing-affected"
+            }
+          ]
+        },
+        {
+          "reference": "managing-toilet-needs",
+          "parentReference": "daily-activity-sct",
+          "title": "Using the toilet and managing incontinence",
+          "next": [
+            {
+              "view": "managing-toilet-needs-affected"
+            }
+          ]
+        },
+        {
+          "reference": "dressing-and-undressing",
+          "parentReference": "daily-activity-sct",
+          "title": "Dressing and undressing",
+          "next": [
+            {
+              "view": "dressing-and-undressing-affected"
+            }
+          ]
+        },
+        {
+          "reference": "talking-and-listening",
+          "parentReference": "daily-activity-sct",
+          "title": "Talking, listening and understanding",
+          "next": [
+            {
+              "view": "talking-and-listening-affected"
+            }
+          ]
+        },
+        {
+          "reference": "reading",
+          "parentReference": "daily-activity-sct",
+          "title": "Reading",
+          "next": [
+            {
+              "view": "reading-affected"
+            }
+          ]
+        },
+        {
+          "reference": "mixing-with-other-people",
+          "parentReference": "daily-activity-sct",
+          "title": "Mixing with other people",
+          "next": [
+            {
+              "view": "mixing-with-other-people-affected"
+            }
+          ]
+        },
+        {
+          "reference": "managing-money",
+          "parentReference": "daily-activity-sct",
+          "title": "Managing money",
+          "next": [
+            {
+              "view": "managing-money-affected"
+            }
+          ]
+        },
+        {
+          "reference": "planning-and-following-a-journey",
+          "parentReference": "mobility-sct",
+          "title": "Planning and following a journey",
+          "next": [
+            {
+              "view": "planning-and-following-a-journey-affected"
+            }
+          ]
+        },
+        {
+          "reference": "moving-around",
+          "parentReference": "mobility-sct",
+          "title": "Moving around",
+          "next": [
+            {
+              "view": "moving-around-affected"
+            }
+          ]
+        },
+        {
+          "reference": "additional-information",
+          "parentReference": "additional-information-sct",
+          "title": "Additional information",
+          "next": [
+            {
+              "view": "additional-information-affected"
+            }
+          ]
+        },
+        {
+          "reference": "submission",
+          "parentReference": "submission-sct",
+          "title": "Submit your application",
+          "preRequisites": [
+            "about-your-health",
+            "about-your-health-professionals",
+            "preparing-food",
+            "eating-and-drinking",
+            "managing-treatments",
+            "washing-and-bathing",
+            "managing-toilet-needs",
+            "dressing-and-undressing",
+            "talking-and-listening",
+            "reading",
+            "mixing-with-other-people",
+            "managing-money",
+            "planning-and-following-a-journey",
+            "moving-around",
+            "additional-information"
+          ],
+          "next": [
+            {
+              "view": "supporting-evidence-instructions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health",
+      "reference": "condition",
+      "type": "MULTI_PART_QUESTION",
+      "title": "What health condition or disability do you have?",
+      "cyaRowTextOverride": "Condition or disability",
+      "isMultiAnswerable": true,
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "By condition or disability, we mean physical, sight, hearing or speech difficulties, learning, developmental or behavioural difficulties or mental health conditions."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You can add other conditions and disabilities later if you need to."
+        }
+      ],
+      "questions": [
+        {
+          "reference": "condition-name",
+          "type": "SHORT_TEXT_QUESTION",
+          "title": "Name of condition or disability",
+          "helperText": "For example, kidney failure.",
+          "validation": {
+            "rules": [
+              {
+                "title": "Name of condition or disability must be between 2 and 200 characters",
+                "rule": "^.{2,200}$"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter the name of your condition or disability"
+            }
+          }
+        },
+        {
+          "reference": "condition-start",
+          "type": "SHORT_TEXT_QUESTION",
+          "title": "Approximate start date",
+          "helperText": "For example, about 14 months ago.",
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter the approximate start date"
+            }
+          }
+        }
+      ],
+      "next": [
+        {
+          "view": "condition-details"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health",
+      "reference": "condition-details",
+      "type": "TEXT_AREA_QUESTION",
+      "title": "About this condition or disability",
+      "isMultiAnswerable": true,
+      "associatesWithReference": "condition",
+      "numRows": 18,
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Tell us about:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "tablets or other medication you are taking or will be taking and the dosage",
+            "any treatments you have had, you are currently having or have planned for the future (include private as well as NHS funded treatments)",
+            "any side effects these have on you"
+          ]
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "About this condition or disability must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details about your condition or disability"
+        }
+      },
+      "next": [
+        {
+          "view": "another-condition"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health",
+      "reference": "another-condition",
+      "type": "BOOL_QUESTION",
+      "title": "Do you have another condition or disability?",
+      "trueText": "Yes",
+      "falseText": "No",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if you have another condition or disability"
+        }
+      },
+      "next": [
+        {
+          "view": "condition",
+          "condition": "x -> x == true",
+          "recursiveNavigation": true
+        },
+        {
+          "view": "condition-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health",
+      "reference": "remove-condition",
+      "type": "BOOL_QUESTION",
+      "title": "Are you sure you want to remove?",
+      "trueText": "Yes",
+      "falseText": "No",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if you would like to remove this condition"
+        }
+      },
+      "next": [
+        {
+          "view": "condition-check-your-answers",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "condition-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health",
+      "reference": "condition-check-your-answers",
+      "type": "CHECK_YOUR_ANSWERS",
+      "title": "Check your answers: about your health",
+      "allowsRemoval": true,
+      "removeReference": "remove-condition",
+      "addReference": "condition",
+      "addLinkText": "Add another condition or disability",
+      "removeText": "Remove",
+      "changeText": "Change",
+      "questionReferences": [
+        "condition",
+        "condition-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health-professionals",
+      "reference": "health-professionals-introduction",
+      "type": "ADVICE",
+      "title": "About your health or care professionals",
+      "confirmButtonText": "Continue",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "We ask you to send us supporting evidence with your form, but sometimes we may contact the health or care professionals who support you for further information."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Please tell us about any health or care professionals who treat or care for you most regularly and who are best placed to advise us on how your health condition or disability affects you."
+        }
+      ],
+      "next": [
+        {
+          "view": "health-professionals-question"
+        }
+      ],
+      "metaData": {
+        "isNavigationOnly": true
+      }
+    },
+    {
+      "parentReference": "about-your-health-professionals",
+      "reference": "health-professionals-question",
+      "type": "BOOL_QUESTION",
+      "title": "Are there any health or care professionals that you would like to tell us about?",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For example, a GP, hospital doctor, specialist nurse, community psychiatric nurse, occupational therapist, physiotherapist, social worker, counsellor or support worker."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes to enter health or care professional details"
+        }
+      },
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "health-professionals-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "health-professionals-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health-professionals",
+      "reference": "health-professionals-details",
+      "type": "MULTI_PART_QUESTION",
+      "title": "Health or care professional details",
+      "cyaRowTextOverride": "Details",
+      "isMultiAnswerable": true,
+      "uiElements": [
+        {
+          "type": "HINT",
+          "text": "You can add details for other health or care professionals later if you need to."
+        }
+      ],
+      "questions": [
+        {
+          "reference": "health-professional-name",
+          "type": "SHORT_TEXT_QUESTION",
+          "fieldLabel": "Their name",
+          "validation": {
+            "rules": [
+              {
+                "title": "Health or care professional profession must be 56 characters or fewer",
+                "rule": "^.{1,56}$"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter their name"
+            }
+          }
+        },
+        {
+          "reference": "health-professional-profession",
+          "type": "SHORT_TEXT_QUESTION",
+          "fieldLabel": "Profession",
+          "validation": {
+            "rules": [
+              {
+                "title": "Health or care professional name must be 35 characters or fewer",
+                "rule": "^.{1,35}$"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter their profession"
+            }
+          }
+        },
+        {
+          "reference": "health-professional-phone",
+          "type": "SHORT_TEXT_QUESTION",
+          "fieldLabel": "Phone number, including dialling code",
+          "validation": {
+            "rules": [
+              {
+                "title": "Phone number must be 15 characters or fewer",
+                "rule": "^.{1,15}$"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter their phone number"
+            }
+          }
+        },
+        {
+          "reference": "health-professional-address-line-1",
+          "type": "SHORT_TEXT_QUESTION",
+          "uiElements": [
+            {
+              "type": "HTML",
+              "html": "<legend class='govuk-fieldset__legend govuk-fieldset__legend--m'>Their address</legend>"
+            },
+            {
+              "type": "HINT",
+              "text": "This is where you see them such as the health centre, GP surgery or hospital address."
+            }
+          ],
+          "fieldLabel": "Building and street",
+          "validation": {
+            "rules": [
+              {
+                "title": "Building and street must be between 3 and 35 characters",
+                "rule": "(^(?i)(\\d+|[a-z0-9\\-,.&#()/\\\\:;'\"]+)[a-z0-9\\-,.&#()/\\\\:;'\" ]*$)"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter building and street"
+            }
+          }
+        },
+        {
+          "reference": "health-professional-address-line-2",
+          "type": "SHORT_TEXT_QUESTION",
+          "hidden": true,
+          "validation": {
+            "rules": [
+              {
+                "title": "Building and street must be between 3 and 35 characters",
+                "rule": "(^(?i)[a-z0-9\\-,.&#()/\\\\:;'\"]+[a-z0-9\\-,.&#()/\\\\:;'\" ]*$)"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": false
+            }
+          }
+        },
+        {
+          "reference": "health-professional-town",
+          "type": "SHORT_TEXT_QUESTION",
+          "fieldLabel": "Town or city",
+          "validation": {
+            "rules": [
+              {
+                "title": "Town or city must be between 3 and 35 characters",
+                "rule": "(^(?i)[a-z0-9\\-,.&#()/\\\\:;'\"]+[a-z0-9\\-,.&#()/\\\\:;'\" ]*$)"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter town or city"
+            }
+          }
+        },
+        {
+          "reference": "health-professional-postcode",
+          "type": "SHORT_TEXT_QUESTION",
+          "fieldLabel": "Postcode",
+          "validation": {
+            "rules": [
+              {
+                "title": "Enter a real postcode",
+                "rule": "(^(?i)(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$)"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter a real postcode"
+            }
+          }
+        },
+        {
+          "reference": "health-professional-last-contact",
+          "type": "SHORT_TEXT_QUESTION",
+          "fieldLabel": "When did you last speak to them?",
+          "helperText": "This can be approximate - for example, March 2021 or 18 months ago.",
+          "validation": {
+            "rules": [
+              {
+                "title": "Date you last spoke to them must only contain letters a to z, numbers 0 to 9, spaces, and characters .,/'-",
+                "rule": "(^[A-Za-z0-9 .,/'-]+$)"
+              },
+              {
+                "title": "Date you last spoke to them must be 50 characters or fewer",
+                "rule": "^.{1,50}$"
+              }
+            ]
+          },
+          "metaData": {
+            "isPII": true,
+            "required": {
+              "responseRequired": true,
+              "errorMessage": "Enter when you last spoke to them"
+            }
+          }
+        }
+      ],
+      "next": [
+        {
+          "view": "another-health-professional"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health-professionals",
+      "reference": "another-health-professional",
+      "type": "BOOL_QUESTION",
+      "title": "Are there any other health or care professionals that you would like to tell us about?",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For example, a GP, hospital doctor, specialist nurse, community psychiatric nurse, occupational therapist, physiotherapist, social worker, counsellor or support worker."
+        }
+      ],
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if you would like to add another health or care professional"
+        }
+      },
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "health-professionals-details",
+          "condition": "x -> x == true",
+          "recursiveNavigation": true
+        },
+        {
+          "view": "health-professionals-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health-professionals",
+      "reference": "health-professionals-check-your-answers",
+      "type": "CHECK_YOUR_ANSWERS",
+      "title": "Check your answers: about your health or care professionals",
+      "addReference": "health-professionals-details",
+      "addLinkText": "Add another health or care professional",
+      "removeText": "Remove",
+      "changeText": "Change",
+      "questionReferences": [
+        "health-professionals-question",
+        "health-professionals-details"
+      ],
+      "allowsRemoval": true,
+      "removeReference": "remove-health-professional",
+      "next": [
+        {
+          "view": "landing"
+        }
+      ]
+    },
+    {
+      "parentReference": "about-your-health-professionals",
+      "reference": "remove-health-professional",
+      "type": "BOOL_QUESTION",
+      "title": "Are you sure you want to remove?",
+      "trueText": "Yes",
+      "falseText": "No",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if you would like to remove this health or care professional"
+        }
+      },
+      "next": [
+        {
+          "view": "health-professionals-check-your-answers",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "health-professionals-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "preparing-food",
+      "reference": "preparing-food-affected",
+      "pageTitle": "Preparing food",
+      "title": "Does your condition affect you preparing food, or prevent you from doing so?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "preparing-food-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "preparing-food-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means making a simple, one course meal for one. This includes:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "peeling and chopping ingredients",
+            "opening tins",
+            "cooking or heating food on a standard hob or using a microwave"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Consider if you can prepare food safely and without being supervised."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects or prevents you preparing food"
+        }
+      }
+    },
+    {
+      "parentReference": "preparing-food",
+      "reference": "preparing-food-details",
+      "title": "Tell us about the difficulties you have with preparing food and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with preparing food and how you manage them",
+      "fieldLabel": "Enter your answer here",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "preparing-food-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"About twice a year, for about 3 weeks at a time I have difficulty remembering to turn the hob off because I get too distracted to complete tasks like this. My partner supervises me in the kitchen to make sure I stay safe.\"</p>\n <p>\"Every day, I have difficulty standing while preparing food because my leg is too stiff and painful. I need to use a perching stool so I can rest my leg while preparing food.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "preparing-food",
+      "reference": "preparing-food-check-your-answers",
+      "title": "Check your answers: preparing food",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "preparing-food-affected",
+        "preparing-food-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "eating-and-drinking",
+      "reference": "eating-and-drinking-affected",
+      "pageTitle": "Eating and drinking",
+      "title": "Does your condition affect you eating and drinking?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "feeding-tube",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "eating-and-drinking-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "remembering when to eat",
+            "cutting food into pieces",
+            "putting food and drink in your mouth",
+            "chewing and swallowing food and drink"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Consider if you need help cutting up food, getting it to your mouth or if someone needs to prompt, encourage or remind you to eat."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you eating and drinking"
+        }
+      }
+    },
+    {
+      "parentReference": "eating-and-drinking",
+      "reference": "feeding-tube",
+      "title": "Do you use a feeding tube or similar device to eat or drink?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "eating-and-drinking-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "eating-and-drinking-details",
+          "condition": "x -> x == false"
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if you use a feeding tube or similar device to eat or drink"
+        }
+      }
+    },
+    {
+      "parentReference": "eating-and-drinking",
+      "reference": "eating-and-drinking-details",
+      "title": "Tell us about the difficulties you have with eating and drinking and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with eating and drinking and how you manage them",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "eating-and-drinking-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"At least 5 times a week, I have difficulty cutting up my food at dinner because my right hand hurts when I hold a knife. I need adapted cutlery so I can cut up my food myself.\"</p>\n <p>\"I always have difficulty eating enough food at mealtimes to keep healthy because I am preoccupied with my weight and get very upset. My partner prompts me to manage my portion size and eat my meals.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "eating-and-drinking",
+      "reference": "eating-and-drinking-check-your-answers",
+      "title": "Check your answers: eating and drinking",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "eating-and-drinking-affected",
+        "feeding-tube",
+        "eating-and-drinking-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "managing-treatments",
+      "reference": "managing-treatments-affected",
+      "pageTitle": "Managing treatments",
+      "title": "Does your condition affect you managing your treatments?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "managing-treatments-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "managing-treatments-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "monitoring changes in your health condition or disability (for example, your blood sugar level, mental state or pain levels)",
+            "taking medication in the right way and at the right time",
+            "managing therapies that take place at home which have been recommended by a health or care professional or pharmacist (for example, physiotherapy or home dialysis)"
+          ]
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you managing your treatments"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-treatments",
+      "reference": "managing-treatments-details",
+      "title": "Tell us about the difficulties you have with monitoring changes in your health condition or disability and taking medication, and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with monitoring changes in your health condition or disability and taking medication, and how you manage them",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "managing-treatments-therapies"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"About four days a week, I have trouble taking my arthritis medication because my wrists hurt when I try to open the pill bottle. I put my pills in a dosette box so I do not need to open the pill bottle on days when I am unable.\"</p>\n <p>\"Every evening, I have trouble monitoring my blood glucose levels because I forget and get confused on how to do it. My partner prompts me and helps me measure my blood glucose levels in the evening.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-treatments",
+      "reference": "managing-treatments-therapies",
+      "title": "Tell us about any therapies you take at home that need the help of another person",
+      "cyaRowTextOverride": "Therapies you take at home that need the help of another person",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "managing-treatments-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "We want to know about:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "what the therapy is",
+            "how often you receive the therapy",
+            "how long the therapy takes",
+            "the type of assistance you need from another person and for how long",
+            "tell us about any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Example</h2>\n <p>\"I need home dialysis for 3 hours on Monday and Friday each week. My partner helps me set up the dialysis equipment and supervises me during the dialysis to make sure I stay safe.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of therapies you need help with"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-treatments",
+      "reference": "managing-treatments-check-your-answers",
+      "title": "Check your answers: managing treatments",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "managing-treatments-affected",
+        "managing-treatments-details",
+        "managing-treatments-therapies"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "washing-and-bathing",
+      "reference": "washing-and-bathing-affected",
+      "pageTitle": "Washing and bathing",
+      "title": "Does your condition affect you washing and bathing?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "washing-and-bathing-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "washing-and-bathing-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "washing your body, limbs, face, underarms and hair",
+            "using a normal bath or shower",
+            "getting in and out of a normal bath or shower"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Consider if you can wash or bathe safely and without being supervised. And consider how much time it takes you and whether you do it too often or not often enough."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you washing and bathing"
+        }
+      }
+    },
+    {
+      "parentReference": "washing-and-bathing",
+      "reference": "washing-and-bathing-details",
+      "title": "Tell us about the difficulties you have with washing and bathing and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with washing and bathing and how you manage them",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "washing-and-bathing-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"For about three months of the year, I cannot motivate myself to bathe because I feel too depressed. My parents prompt me for several minutes every day to go and shower when I cannot motivate myself.\"</p>\n <p>\"About five days a week, I have difficulty washing my lower body because my back is too stiff and painful. I use a shower seat so that I can rest my back when I shower.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "washing-and-bathing",
+      "reference": "washing-and-bathing-check-your-answers",
+      "title": "Check your answers: washing and bathing",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "washing-and-bathing-affected",
+        "washing-and-bathing-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "managing-toilet-needs",
+      "reference": "managing-toilet-needs-affected",
+      "pageTitle": "Using the toilet or managing incontinence",
+      "title": "Does your condition affect you using the toilet and managing incontinence?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "managing-toilet-needs-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "managing-toilet-needs-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Using the toilet means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "being able to get on or off a normal toilet",
+            "cleaning yourself after using the toilet"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Managing incontinence means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "managing the emptying of your bowel and bladder when you have difficulty controlling this, including if you need a collecting device such as a catheter or stoma bag\n",
+            "cleaning yourself after doing so"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This does not mean physically getting to the bathroom."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you using the toilet or managing incontinence"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-toilet-needs",
+      "reference": "managing-toilet-needs-details",
+      "title": "Tell us about the difficulties you have using the toilet and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with going to the toilet and managing incontinence",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "managing-toilet-needs-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"I always have difficulty cleaning myself after a bowel movement because I cannot safely reach behind myself while using the toilet. My care worker assists me in cleaning myself following a bowel movement.\"</p>\n <p>\"I suffer from bladder incontinence and buy my own pads to avoid embarrassment\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-toilet-needs",
+      "reference": "managing-toilet-needs-check-your-answers",
+      "title": "Check your answers: using the toilet and managing incontinence",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "managing-toilet-needs-affected",
+        "managing-toilet-needs-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "dressing-and-undressing",
+      "reference": "dressing-and-undressing-affected",
+      "pageTitle": "Dressing and undressing",
+      "title": "Does your condition affect you dressing or undressing?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "dressing-and-undressing-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "dressing-and-undressing-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "putting on and taking off clothing, including shoes and socks",
+            "needing help to fasten or undo zips or buttons",
+            "knowing when to put on or take off clothes"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Consider how long it takes you to dress or undress."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you dressing and undressing"
+        }
+      }
+    },
+    {
+      "parentReference": "dressing-and-undressing",
+      "reference": "dressing-and-undressing-details",
+      "title": "Tell us about the difficulties you have with dressing and undressing and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with dressing and undressing and how you manage them",
+      "fieldLabel": "Enter your answer here",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "dressing-and-undressing-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"About three times a week, I have trouble dressing my upper body because my hands shake too much to do up the buttons on my shirt. I use a button hook to do the buttons on my shirt.\"</p>\n <p>\"Most days my partner has to remind me to get dressed during the day.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "dressing-and-undressing",
+      "reference": "dressing-and-undressing-check-your-answers",
+      "title": "Check your answers: dressing and undressing",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "dressing-and-undressing-affected",
+        "dressing-and-undressing-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "talking-and-listening",
+      "reference": "talking-and-listening-affected",
+      "pageTitle": "Talking, listening and understanding",
+      "title": "Does your condition affect you talking, listening and understanding?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "talking-and-listening-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "talking-and-listening-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means doing the following in your own language:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "communicating by speaking clearly to people",
+            "being understood by others",
+            "listening and understanding what people say"
+          ]
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you talking, listening and understanding"
+        }
+      }
+    },
+    {
+      "parentReference": "talking-and-listening",
+      "reference": "talking-and-listening-details",
+      "title": "Tell us about the difficulties you have with talking, listening and understanding and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with talking, listening and understanding and how you manage them",
+      "fieldLabel": "Enter your answer here",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "talking-and-listening-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"I always have difficulty listening because I am hard of hearing. I use 2 hearing aids to help me hear what other people are saying.\"</p>\n <p>\"I have difficulty speaking and expressing myself due to having a stroke several years ago. I use a communication board to help me communicate with others.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "talking-and-listening",
+      "reference": "talking-and-listening-check-your-answers",
+      "title": "Check your answers: talking, listening and understanding",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "talking-and-listening-affected",
+        "talking-and-listening-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "reading",
+      "reference": "reading-affected",
+      "pageTitle": "Reading",
+      "title": "Does your condition affect your ability to read?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "reading-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "reading-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means doing the following in your own language:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "reading written words and numbers both indoors and outdoors",
+            "reading signs and symbols (for example, a green exit sign on a door)"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For this question, you must be able to see the information. Using braille to read is not counted as reading and you should give more detail about how your condition affects your ability to read."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you reading"
+        }
+      }
+    },
+    {
+      "parentReference": "reading",
+      "reference": "reading-details",
+      "title": "Tell us about the difficulties you have with reading words or symbols and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with reading words or symbols and how you manage them",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "reading-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids or adaptations you use, or help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"I am never able to read one sentence after another because I confuse the order of the letters and words. I use a portable scanner to help me understand written words more quickly.\"</p>\n <p>\"I have dyslexia and need to use a yellow filter to help me to read.\"</p>\n <p>\"Most days, I am unable to read at all because I experience double vision and am unable to focus. My partner reads for me when I am unable to do it myself.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "reading",
+      "reference": "reading-check-your-answers",
+      "title": "Check your answers: reading",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "reading-affected",
+        "reading-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "mixing-with-other-people",
+      "reference": "mixing-with-other-people-affected",
+      "pageTitle": "Mixing with other people",
+      "title": "Does your condition affect you mixing with other people?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "mixing-with-other-people-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "mixing-with-other-people-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "meeting people face to face",
+            "understanding how they are behaving towards you including body language",
+            "behaving appropriately towards them",
+            "being able to make new relationships with other people"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means doing these things with both people you know well and people you do not know."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you mixing with other people"
+        }
+      }
+    },
+    {
+      "parentReference": "mixing-with-other-people",
+      "reference": "mixing-with-other-people-details",
+      "title": "Tell us about the difficulties you have when mixing with other people and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with mixing with other people and how you manage them",
+      "fieldLabel": "Enter your answer here",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "mixing-with-other-people-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any help you get from another person",
+            "any help you feel you need but do not get",
+            "whether severe anxiety or distress stops you from doing this",
+            "about any risk of harm to you and others"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Example</h2>\n <p>\"I am always unable to meet new people by myself because I become very distressed. My carer supports me when I interact with new people so I do not become distressed.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "mixing-with-other-people",
+      "reference": "mixing-with-other-people-check-your-answers",
+      "title": "Check your answers: mixing with other people",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "mixing-with-other-people-affected",
+        "mixing-with-other-people-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "managing-money",
+      "reference": "managing-money-affected",
+      "pageTitle": "Managing your money",
+      "title": "Does your condition affect you managing your money?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "managing-money-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "managing-money-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "understanding how much things cost",
+            "understanding how much change you should get",
+            "managing your own budgets, paying your own bills and planning your own future purchases"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This does not mean taking a bill to the post box or being able to hold your change."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This also does not mean being able to read a bill or physically open a letter."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you managing your money"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-money",
+      "reference": "managing-money-details",
+      "title": "Tell us about the difficulties you have with managing your money and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with managing your money and how you manage them",
+      "fieldLabel": "Enter your answer here",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "managing-money-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"Most days I have difficulty making decisions about bills and household budgets because I become very anxious and panicked. My partner helps me make financial decisions.\"</p>\n <p>\"I always have difficulty paying for things in shops because I find it difficult to calculate how much things cost. My carer helps me understand how much I need to pay.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "managing-money",
+      "reference": "managing-money-check-your-answers",
+      "title": "Check your answers: managing money",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "managing-money-affected",
+        "managing-money-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "planning-and-following-a-journey",
+      "reference": "planning-and-following-a-journey-affected",
+      "pageTitle": "Planning and following journeys",
+      "title": "Does your condition affect you planning and following journeys?",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "next": [
+        {
+          "view": "planning-and-following-a-journey-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "planning-and-following-a-journey-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "leaving your home to go out",
+            "following a route you know well",
+            "using public transport timetables to travel to somewhere new",
+            "working out a new route and following it, for example, if you find a road is closed on a route you know well and need to plan and follow a different route"
+          ]
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This question is not about if you can physically move around."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you planning and following a journey"
+        }
+      }
+    },
+    {
+      "parentReference": "planning-and-following-a-journey",
+      "reference": "planning-and-following-a-journey-details",
+      "title": "Tell us more about the difficulties you have with planning and following journeys and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with planning and following journeys and how you manage them",
+      "fieldLabel": "Enter your answer here",
+      "type": "TEXT_AREA_QUESTION",
+      "numRows": 18,
+      "next": [
+        {
+          "view": "planning-and-following-a-journey-check-your-answers"
+        }
+      ],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids you use, such as an assistance dog or long cane",
+            "any help you get from another person",
+            "if severe anxiety or distress stops you from leaving the home, following or completing a journey",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"About three times a week I am unable to go by myself to shop for food at my local shop because I am too anxious to leave the house. My carer does my shopping for me when this happens.\"</p>\n <p>\"I am never able to follow a new or familiar journey safely by myself because I am unable to see. My guide dog helps me stay safe when following journeys.\"</p>\n <p>\"I am never able to plan new journeys as I find it too difficult to understand maps. My carer plans new journeys for me and tells me how to follow them.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      }
+    },
+    {
+      "parentReference": "planning-and-following-a-journey",
+      "reference": "planning-and-following-a-journey-check-your-answers",
+      "title": "Check your answers: planning and following a journey",
+      "type": "CHECK_YOUR_ANSWERS",
+      "questionReferences": [
+        "planning-and-following-a-journey-affected",
+        "planning-and-following-a-journey-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ],
+      "allowsRemoval": false
+    },
+    {
+      "parentReference": "moving-around",
+      "reference": "moving-around-affected",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "pageTitle": "Moving around",
+      "title": "Does your condition affect you moving around?",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "This means how well you can walk without any specialist equipment or support from another person."
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if your condition affects you moving around"
+        }
+      },
+      "next": [
+        {
+          "view": "moving-around-info",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "moving-around-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "moving-around",
+      "reference": "moving-around-info",
+      "pageTitle": "Distance you can walk using any aids or appliances you need",
+      "title": "How far can you walk using any aids or appliances you need?",
+      "cyaRowTextOverride": "How far can you walk using any aids or appliances you need?",
+      "type": "RADIO_QUESTION",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "To give you an idea of distance, 50 metres is about 5 buses parked end to end."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Walking aids and appliances include walking sticks, walking frames, crutches, artificial limbs."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": " A wheelchair or mobility scooter does not count as an aid or appliance for this question. If you use a wheelchair or mobility scooter, please answer this question by telling us how well you can stand and move without using it."
+        }
+      ],
+      "options": [
+        {
+          "reference": "cannot-stand",
+          "label": "I cannot stand and move even using my aids or appliances"
+        },
+        {
+          "reference": "u20",
+          "label": "Less than 20 metres"
+        },
+        {
+          "reference": "u50",
+          "label": "Between 20 and up to 50 metres"
+        },
+        {
+          "reference": "u200",
+          "label": "Between 50 and up to 200 metres"
+        },
+        {
+          "reference": "o200",
+          "label": "More than 200 metres"
+        },
+        {
+          "reference": "variable",
+          "label": "It varies"
+        }
+      ],
+      "metaData": {
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select how far you can walk using any aids or appliances you need"
+        }
+      },
+      "next": [
+        {
+          "view": "moving-around-details",
+          "condition": "x -> !x.equals(\"variable\")"
+        },
+        {
+          "view": "moving-around-varies",
+          "condition": "x -> x.equals(\"variable\")"
+        }
+      ]
+    },
+    {
+      "parentReference": "moving-around",
+      "reference": "moving-around-details",
+      "type": "TEXT_AREA_QUESTION",
+      "title": "Tell us more about the difficulties you have with moving around and how you manage them",
+      "cyaRowTextOverride": "Difficulties you have with moving around and how you manage them",
+      "numRows": 18,
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "For each difficulty, please tell us:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "how often you have this difficulty – tell us about both good and bad days",
+            "what the difficulty is",
+            "why you have it, or how it relates to your condition",
+            "any aids, appliances or devices you use to get around including wheelchairs or mobility scooters",
+            "any help you get from another person",
+            "any help you feel you need but do not get"
+          ]
+        },
+        {
+          "type": "INSET",
+          "html": "<h2 class=\"govuk-heading-m\">Examples</h2>\n <p>\"I can only walk down one aisle of my local supermarket leaning on the trolley for support.\"</p>\n <p>\"I am never able to walk more than 20 metres as quickly as most people do, because I can only walk very slowly without being at risk of falling. My carer physically supports me when we walk outside to make sure I do not fall.\"</p>"
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter details of the difficulties you have"
+        }
+      },
+      "next": [
+        {
+          "view": "moving-around-check-your-answers"
+        }
+      ]
+    },
+    {
+      "parentReference": "moving-around",
+      "reference": "moving-around-varies",
+      "type": "TEXT_AREA_QUESTION",
+      "title": "Why does the distance you can walk vary?",
+      "validation": {
+        "rules": [
+          {
+            "title": "Why the distance you can walk varies should be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter why the distance you can walk varies"
+        }
+      },
+      "next": [
+        {
+          "view": "moving-around-details"
+        }
+      ]
+    },
+    {
+      "parentReference": "moving-around",
+      "reference": "moving-around-check-your-answers",
+      "type": "CHECK_YOUR_ANSWERS",
+      "title": "Check your answers: moving around",
+      "questionReferences": [
+        "moving-around-affected",
+        "moving-around-info",
+        "moving-around-varies",
+        "moving-around-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ]
+    },
+    {
+      "parentReference": "additional-information",
+      "reference": "additional-information-affected",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "pageTitle": "Additional information",
+      "title": "Is there anything else you would like to tell us about?",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Tell us anything else you think we should know that you have not already told us about how your health condition or disability affects you."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Carers, friends or family who want to give us additional information can also do so here."
+        }
+      ],
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select yes if you would like to tell us about anything else"
+        }
+      },
+      "next": [
+        {
+          "view": "additional-information-details",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "additional-information-check-your-answers",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "additional-information",
+      "reference": "additional-information-details",
+      "type": "TEXT_AREA_QUESTION",
+      "title": "Additional information",
+      "numRows": 18,
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Tell us anything else you think we should know about how your health condition or disability affects you, that you have not mentioned already."
+        }
+      ],
+      "validation": {
+        "rules": [
+          {
+            "title": "Details of the difficulties you have must be 5000 characters or fewer",
+            "rule": "^.{1,5000}$"
+          }
+        ]
+      },
+      "metaData": {
+        "isPII": true,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Enter additional information"
+        }
+      },
+      "next": [
+        {
+          "view": "additional-information-check-your-answers"
+        }
+      ]
+    },
+    {
+      "parentReference": "additional-information",
+      "reference": "additional-information-check-your-answers",
+      "type": "CHECK_YOUR_ANSWERS",
+      "title": "Check your answers: additional information",
+      "questionReferences": [
+        "additional-information-affected",
+        "additional-information-details"
+      ],
+      "next": [
+        {
+          "view": "landing"
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "supporting-evidence-instructions",
+      "type": "ADVICE",
+      "title": "Supporting evidence",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select ‘yes’ if you want to upload another file"
+        }
+      },
+      "confirmButtonText": "Continue",
+      "uiElements": [
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body-l\">It is important that you help us to understand your needs by uploading any documentary evidence or information. This should explain how your health condition or disability affects your daily life.</p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Examples of documents you could upload include:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "reports about you from health or care professionals",
+            "care or treatment plans",
+            "test results",
+            "repeat prescription lists"
+          ]
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a class=\"govuk-link\" download=\"\" href=\"/pdfs/pip2-supporting-evidence-help-v2.pdf\">Help with the types of supporting evidence you should upload and send (PDF)</a></p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Any delay in sending evidence might mean:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "your claim to PIP will take longer to assess",
+            "you might need an assessment with a health professional which might not have been necessary",
+            "we might not be able to get all the information we need to make a decision on your claim which accurately reflects your daily living or mobility needs"
+          ]
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><strong>Upload </strong>photos or scans of documents that shows how your health condition or disability affects you carrying out day-to-day activities.</p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Only send us copies of information or evidence you already have."
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><strong>Do not:</strong></p>"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "send general information about your condition like fact sheets or information from the internet",
+            "contact your GP or health or care professional to ask for new or additional information as they may charge you for this"
+          ]
+        }
+      ],
+      "next": [
+        {
+          "view": "supporting-evidence-question"
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "supporting-evidence-question",
+      "type": "BOOL_QUESTION",
+      "trueText": "Yes",
+      "falseText": "No",
+      "pageTitle": "Supporting evidence",
+      "title": "Do you want to upload any supporting evidence?",
+      "confirmButtonText": "Continue",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Supporting evidence might be care plans, reports, letters, or other information from health or care professionals."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You can upload photos and scanned images of your supporting evidence."
+        }
+      ],
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select ‘yes’ if you want to upload another file"
+        }
+      },
+      "next": [
+        {
+          "view": "file-upload-help",
+          "condition": "x -> x == true"
+        },
+        {
+          "view": "declaration",
+          "condition": "x -> x == false"
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "file-upload-help",
+      "type": "ADVICE",
+      "title": "How to take a photo of your evidence",
+      "confirmButtonText": "Continue to upload",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select ‘yes’ if you want to upload another file"
+        }
+      },
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Make sure:"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "you are in a well lit place",
+            "all of the document is in the image",
+            "you take the photo from above and not at an angle",
+            "the photo is not blurred"
+          ]
+        }
+      ],
+      "next": [
+        {
+          "view": "file-upload"
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "file-upload",
+      "type": "FILE_UPLOAD",
+      "title": "Upload a file",
+      "confirmButtonText": "Continue",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "File types accepted are Word, PDF, JPG and PNG."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Each file must be smaller than 10MB."
+        },
+        {
+          "type": "DETAILS",
+          "summaryText": "Help if your files are too big",
+          "html": "<p class=\"govuk-body\">If a file is bigger than 10MB, reduce the file size if you can and try again.</p><p class=\"govuk-body\">If you still cannot upload and send your files you can post the information instead. Only send photocopies by post. Call 0800 121 6279 (Textphone: 0800 121 4433) if you do not know the freepost address to send them to.</p>",
+          "open": false
+        }
+      ],
+      "next": [
+        {
+          "view": "file-upload-list"
+        }
+      ],
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select ‘yes’ if you want to upload another file"
+        }
+      }
+    },
+    {
+      "parentReference": "submission",
+      "reference": "file-upload-list",
+      "type": "FILE_UPLOAD_SUMMARY",
+      "pageTitle": "Your uploaded files",
+      "title": "Do you want to upload another piece of evidence?",
+      "removeReference": "file-upload-delete",
+      "confirmButtonText": "Continue",
+      "subTitle": "Files added",
+      "trueText": "Yes",
+      "falseText": "No",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Select ‘yes’ if you want to upload another file"
+        }
+      },
+      "next": [
+        {
+          "view": "declaration",
+          "condition": "x -> x == false"
+        },
+        {
+          "view": "file-upload",
+          "condition": "x -> x == true",
+          "recursiveNavigation": true
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "file-upload-delete",
+      "type": "FILE_DELETE",
+      "title": "Confirm file deletion",
+      "trueText": "Yes",
+      "falseText": "No",
+      "fileSummaryReference": "file-upload-list",
+      "metaData": {
+        "isNavigationOnly": true,
+        "isPII": false,
+        "required": {
+          "responseRequired": true,
+          "errorMessage": "Please confirm if you wish to delete this file"
+        }
+      },
+      "next": [
+        {
+          "view": "file-upload-list"
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "declaration",
+      "type": "DECLARATION",
+      "title": "Declaration",
+      "confirmButtonText": "I agree - send my information",
+      "questionReferences": [],
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "The information I have given on this form is correct and complete."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "I have provided the best information available to me at this time to support my claim."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "I will tell the Department for Work and Pensions straightaway, by phone or in writing, of any changes that may affect my claim."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "If my ability to carry out day-to-day activities or get around improves or gets worse, the amount of Personal Independence Payment (PIP) I get might change."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "If the information I give you is wrong or incomplete, or I do not report changes straightaway"
+        },
+        {
+          "type": "UNORDERED_LIST",
+          "items": [
+            "my PIP payments might stop or reduce",
+            "I might be paid too much PIP and have to pay this back",
+            "I might have to pay a financial penalty",
+            "I might be prosecuted"
+          ]
+        }
+      ],
+      "submissionFailure": {
+        "titleText": "Sorry, there is a problem",
+        "elements": [
+          {
+            "type": "HTML",
+            "html": "<div class=\"govuk-error-summary__body\"><ul class=\"govuk-list govuk-error-summary__list\"><li><p class=\"govuk-body\">Your information could not be sent.</p></li><li><p>Try again.</p></li></ul></div>"
+          },
+          {
+            "type": "DETAILS",
+            "open": false,
+            "summaryText": "If there is still a problem",
+            "html": "<p class=\"govuk-body\">\n <p class=\"govuk-body\">Contact:</p>\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\">\n<strong><abbr title=\"Personal Independence Payment\">PIP </abbr>enquiry line</strong></p><p class=\"govuk-body govuk-!-margin-bottom-0\">\nTelephone: 0800 121 6279\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\">Textphone: 0800 121 4493\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\"><a href=\"https://connect.interpreterslive.co.uk/vrs?ilc=DWP\"class=\"govuk-link\">Video relay service </a>for British Sign Language (BSL) users - <a href=\"https://www.youtube.com/watch?v=oELNMfAvDxw\"class=\"govuk-link\">check you can use the service</a>\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\">Monday to Friday, 9am to 5pm.\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\"><a href=\"https://www.gov.uk/call-charges\"class=\"govuk-link\">Find out about call charges</a></p>"
+          }
+        ]
+      },
+      "next": [
+        {
+          "view": "stage2submitted"
+        }
+      ]
+    },
+    {
+      "parentReference": "submission",
+      "reference": "stage2submitted",
+      "type": "ADVICE",
+      "banner": "Stage 2 submitted",
+      "uiElements": [
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\">We have received your stage 2 form within the time allowed. We have sent a confirmation email to <strong>{{ EMAIL_ADDRESS_ARG }}</strong></p>"
+        },
+        {
+          "type": "HTML",
+          "html": "<h2 class=\"govuk-heading-m\">Download a copy of your completed form</h2>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a class=\"govuk-link\" target=\"_blank\" href=\"{{ DOWNLOAD_HREF_ARG }}\" >Download {{ FORENAME_ARG }} {{ SURNAME_ARG }} completed form (PDF)</a></p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You will not be able to download your completed form after you leave this page."
+        },
+        {
+          "type": "HTML",
+          "html": "<h2 class=\"govuk-heading-m\">What happens next</h2>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "We will keep you up to date about your PIP claim by text message if you have agreed for us to do this."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You might be contacted to arrange an assessment with a health professional if more information is needed. You may not need an assessment if you have provided enough information for us to make a decision."
+        },
+        {
+          "type": "HTML",
+          "html": "<h2 class=\"govuk-heading-m\">Confirm your identity</h2>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "It’s important you confirm your identity so that we can pay you straight away if your claim is successful. We check everyone's identity to protect from fraud."
+        },
+        {
+          "type": "HTML",
+          "html": "<form method=\"post\" action=\"{{ IDV_HREF_ARG }}\" method=\"POST\" enctype=\"application/json\"><input type=\"hidden\" name=\"{{ INPUT_POST_NAME }}\" value=\"{{ INPUT_POST_VALUE }}\" /><button class=\"govuk-button\" data-module=\"govuk-button\" type=\"submit\">Confirm your identity</button></form>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\">Your stage 2 form is saved. You can <a class=\"govuk-link\" href=\"{{ SIGN_OUT_ARG }}\">sign out</a> of the service and return later to confirm your identity. You can also upload more evidence that might support your claim.</p>"
+        }
+      ]
+    },
+    {
+      "parentReference": "signed-out",
+      "reference": "user-signed-out",
+      "type": "ADVICE",
+      "banner": "You have signed out",
+      "uiElements": [
+        {
+          "type": "HTML",
+          "html": "<h2 class=\"govuk-heading-m\">What happens next</h2>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\">To complete your claim <a href=\"{{SIGNINLINK}}\"class=\"govuk-link\">sign in</a> again.</p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You will need your email address, mobile phone and password when you next sign in."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "It is now safe to close this window."
+        },
+        {
+          "type": "HTML",
+          "html": "<h2 class=\"govuk-heading-m\">Give feedback</h2>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a href=\"{{FEEDBACKLINK}}\"class=\"govuk-link\"target=\"_blank\">What did you think of this service? (opens in new tab)</a> takes 30 seconds</p>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a href=\"https://forms.office.com/e/NpDfmG01rr\"class=\"govuk-link\"target=\"_blank\">Volunteer to take part in research about PIP (opens in new tab)</a></p>"
+        }
+      ]
+    },
+    {
+      "parentReference": "signed-out",
+      "reference": "submitted-signed-out",
+      "type": "ADVICE",
+      "banner": "You have signed out",
+      "uiElements": [
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a href=\"{{SIGNINLINK}}\"class=\"govuk-link\">Sign in</a> again to confirm your identity, or to upload more evidence that might support your claim.</p>"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "It's important you confirm your identity so we can pay you straight away if your claim is successful. We check everyone's identity to protect from fraud."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You might find it useful to bookmark the sign in page in your internet browser."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You will need your email address, mobile phone and password to sign in."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "You will not need to answer the questions about your daily living activities or mobility again."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "It's now safe to close this window."
+        },
+        {
+          "type": "HTML",
+          "html": "<h2 class=\"govuk-heading-m\">Give feedback</h2>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a href=\"{{FEEDBACKLINK}}\"class=\"govuk-link\"target=\"_blank\">What did you think of this service? (opens in new tab)</a> takes 30 seconds</p>"
+        },
+        {
+          "type": "HTML",
+          "html": "<p class=\"govuk-body\"><a href=\"https://forms.office.com/e/NpDfmG01rr\"class=\"govuk-link\"target=\"_blank\">Volunteer to take part in research about PIP (opens in new tab)</a></p>"
+        }
+      ]
+    },
+    {
+      "parentReference": "signed-out",
+      "reference": "timeout-signed-out",
+      "type": "ADVICE",
+      "title": "For your security, we signed you out",
+      "confirmButtonText": "Sign in",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "We signed you out because you have not saved your progress for 60 minutes"
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "We saved the answers you entered up to whn you last saved your progress."
+        }
+      ]
+    },
+    {
+      "parentReference": "signed-out",
+      "reference": "sign-out-warning",
+      "title": "Have you saved your information?",
+      "type": "BOOL_QUESTION",
+      "confirmButtonText": "Confirm",
+      "trueText": "Yes, sign me out",
+      "falseText": "No, take me back so I can save my information",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "If you did not enter any information on the last screen, it's safe to sign out."
+        }
+      ],
+      "next": [
+        { "view": "user-signed-out" }
+      ]
+    },
+    {
+      "parentReference": "error",
+      "reference": "server-error",
+      "type": "ADVICE",
+      "title": "Sorry, there's a problem with the service",
+      "uiElements": [
+        {
+          "type": "PLAIN_TEXT",
+          "text": "Try again later."
+        },
+        {
+          "type": "PLAIN_TEXT",
+          "text": "If the problem persists, contact the Department of Work and Pensions."
+        },
+        {
+          "type": "INSET",
+          "html": "<p class=\"govuk-body govuk-!-margin-bottom-0\">\n<strong><abbr title=\"Personal Independence Payment\">PIP </abbr>enquiry line</strong></p><p class=\"govuk-body govuk-!-margin-bottom-0\">\nTelephone: 0800 121 6279\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\">Textphone: 0800 121 4493\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\"><a href=\"https://connect.interpreterslive.co.uk/vrs?ilc=DWP\"class=\"govuk-link\">Video relay service </a>for British Sign Language (BSL) users - <a href=\"https://www.youtube.com/watch?v=oELNMfAvDxw\"class=\"govuk-link\">check you can use the service</a>\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\">Monday to Friday, 9am to 5pm.\n</p><p class=\"govuk-body govuk-!-margin-bottom-0\"><a href=\"https://www.gov.uk/call-charges\"class=\"govuk-link\">Find out about call charges</a></p>"
+        }
+      ],
+      "metaData": {
+        "isNavigationOnly": true
+      }
+    }
+  ]
+}

@@ -5,6 +5,7 @@ networks:
 
 services:
   ms-pip2-pdf-generator:
+    container_name: pip2-pdf-generator
     image: ${GITLAB_IMAGE}
     build:
       context: .
@@ -30,6 +31,8 @@ services:
       - AWS_ENCRYPTION_KMS_OVERRIDE=http://localstack:4566
       - AWS_ENCRYPTION_DATA_KEY=alias/localstack
       - AWS_SECRET_ACCESS_KEY=its-a-secret
+      - HEALTH_CAPTURE_MANAGER_BASE_URL=http://ms-pip-apply-mocks-pdf:8080
+      - HEALTH_CAPTURE_MANAGER_ENDPOINT_PATH=form-specification/{formSpecificationId}
     entrypoint:
       - java
       - -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5009
@@ -37,13 +40,40 @@ services:
       - /app.jar
 
   ms-html-to-pdfa:
+    container_name: html-to-pdfa
     image: ${MS_HTML_TO_PDFA_IMAGE}
     networks:
       - ms-pip-pdf-generator
     ports:
       - "6677:6677"
 
+  pip-apply-mocks:
+    container_name: ms-pip-apply-mocks-pdf
+    image: ${PIP_APPLY_MOCKS_IMAGE}
+    expose:
+      - 8080
+    ports:
+      - "9999:8080"
+    networks:
+      - ms-pip-pdf-generator
+    command:
+      - -verbose
+      - -global-response-templating
+    logging:
+      driver: none
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --request GET http://ms-pip-apply-mocks-pdf:8080/ || exit 1"
+        ]
+      interval: 15s
+      timeout: 15s
+      retries: 20
+
+
   localstack:
+    container_name: localstack-pdf
     image: ${LOCALSTACK_IMAGE}
     environment:
       SERVICES: kms, s3

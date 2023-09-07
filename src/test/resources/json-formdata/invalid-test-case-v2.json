@@ -1,0 +1,351 @@
+{
+  "applicationId": "645a112085380225edae2719",
+  "claimantId": "645a11207b05c5770aaa56af",
+  "formSpecificationId": "123456789",
+  "submissionId": "645a1507eb91a55240b8aadf",
+  "responses": [
+    {
+      "reference": "about-your-health",
+      "questionAnswers": [
+        {
+          "response": false,
+          "reference": "another-condition",
+          "question": "Do you have another condition or disability?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "responses": [
+            {
+              "response": "Kidney",
+              "reference": "condition-name",
+              "question": "Name of condition or disability",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "1 month ago",
+              "reference": "condition-start",
+              "question": "Approximate start date",
+              "questionType": "SHORT_TEXT_QUESTION"
+            }
+          ],
+          "reference": "condition",
+          "question": "What health condition or disability do you have?",
+          "questionType": "MULTI_PART_QUESTION",
+          "responseId": "757fafbe-111f-46f5-9b01-befd7d700c98"
+        },
+        {
+          "response": "Struggling with health",
+          "reference": "condition-details",
+          "question": "About this condition or disability",
+          "questionType": "TEXT_AREA_QUESTION",
+          "responseId": "757fafbe-111f-46f5-9b01-befd7d700c98"
+        }
+      ]
+    },
+    {
+      "reference": "about-your-health-professionals",
+      "questionAnswers": [
+        {
+          "response": false,
+          "reference": "another-health-professional",
+          "question": "Are there any other health or care professionals that you would like to tell us about?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": true,
+          "reference": "health-professionals-question",
+          "question": "Are there any health or care professionals that you would like to tell us about?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "responses": [
+            {
+              "response": "Dr Jones",
+              "reference": "health-professional-name",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "GP",
+              "reference": "health-professional-profession",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "01522000000",
+              "reference": "health-professional-phone",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "76 Ferrous Way",
+              "reference": "health-professional-address-line-1",
+              "question": "Their address",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "",
+              "reference": "health-professional-address-line-2",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "Lincoln",
+              "reference": "health-professional-town",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "LN6 9ZN",
+              "reference": "health-professional-postcode",
+              "questionType": "SHORT_TEXT_QUESTION"
+            },
+            {
+              "response": "y'day",
+              "reference": "health-professional-last-contact",
+              "questionType": "SHORT_TEXT_QUESTION"
+            }
+          ],
+          "reference": "health-professionals-details",
+          "question": "Health or care professional details",
+          "questionType": "MULTI_PART_QUESTION",
+          "responseId": "48ce1000-87ad-46b5-a004-cacc00796bd2"
+        }
+      ]
+    },
+    {
+      "reference": "moving-around",
+      "questionAnswers": [
+        {
+          "responseReference": "variable",
+          "reference": "moving-around-info",
+          "question": "How far can you walk using any aids or appliances you need?",
+          "questionType": "RADIO_QUESTION"
+        },
+        {
+          "response": "Unable to walk",
+          "reference": "moving-around-varies",
+          "question": "Why does the distance you can walk vary?",
+          "questionType": "TEXT_AREA_QUESTION"
+        },
+        {
+          "response": "Struggling with moving around myself",
+          "reference": "moving-around-details",
+          "question": "Tell us more about the difficulties you have with moving around and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "preparing-food",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "preparing-food-affected",
+          "question": "Does your condition affect you preparing food, or prevent you from doing so?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling preparing food myself",
+          "reference": "preparing-food-details",
+          "question": "Tell us about the difficulties you have with preparing food and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "additional-information",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "additional-information-affected",
+          "question": "Is there anything else you would like to tell us about?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Sick",
+          "reference": "additional-information-details",
+          "question": "Additional information",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "eating-and-drinking",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "eating-and-drinking-affected",
+          "question": "Does your condition affect you eating and drinking?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": true,
+          "reference": "feeding-tube",
+          "question": "Do you use a feeding tube or similar device to eat or drink?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling with eating myself",
+          "reference": "eating-and-drinking-details",
+          "question": "Tell us about the difficulties you have with eating and drinking and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "managing-treatments",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "managing-treatments-affected",
+          "question": "Does your condition affect you managing your treatments?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling with taking medicines",
+          "reference": "managing-treatments-details",
+          "question": "Tell us about the difficulties you have with monitoring changes in your health condition or disability and taking medication, and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        },
+        {
+          "response": "Exercise",
+          "reference": "managing-treatments-therapies",
+          "question": "Tell us about any therapies you take at home that need the help of another person",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "washing-and-bathing",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "washing-and-bathing-affected",
+          "question": "Does your condition affect you washing and bathing?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling bathing myself",
+          "reference": "washing-and-bathing-details",
+          "question": "Tell us about the difficulties you have with washing and bathing and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "managing-toilet-needs",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "managing-toilet-needs-affected",
+          "question": "Does your condition affect you using the toilet or managing incontinence?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling with going toilet myself",
+          "reference": "managing-toilet-needs-details",
+          "question": "Tell us about the difficulties you have using the toilet and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "dressing-and-undressing",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "dressing-and-undressing-affected",
+          "question": "Does your condition affect you dressing or undressing?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling with dressing myself",
+          "reference": "dressing-and-undressing-details",
+          "question": "Tell us about the difficulties you have with dressing and undressing and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "talking-and-listening",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "talking-and-listening-affected",
+          "question": "Does your condition affect you talking, listening and understanding?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling with listening and understanding",
+          "reference": "talking-and-listening-details",
+          "question": "Tell us about the difficulties you have with talking, listening and understanding and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "reading",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "reading-affected",
+          "question": "Does your condition affect your ability to read?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Struggling with reading myself",
+          "reference": "reading-details",
+          "question": "Tell us about the difficulties you have with reading words or symbols and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "mixing-with-other-people",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "mixing-with-other-people-affected",
+          "question": "Does your condition affect you mixing with other people?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Unable to mix with other people",
+          "reference": "mixing-with-other-people-details",
+          "question": "Tell us about the difficulties you have when mixing with other people and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "managing-money",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "managing-money-affected",
+          "question": "Does your condition affect you managing your money?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Unable to manage money myself",
+          "reference": "managing-money-details",
+          "question": "Tell us about the difficulties you have with managing your money and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    },
+    {
+      "reference": "planning-and-following-a-journey",
+      "questionAnswers": [
+        {
+          "response": true,
+          "reference": "planning-and-following-a-journey-affected",
+          "question": "Does your condition affect you planning and following journeys?",
+          "questionType": "BOOL_QUESTION"
+        },
+        {
+          "response": "Unable to make and follow travel plans",
+          "reference": "planning-and-following-a-journey-details",
+          "question": "Tell us more about the difficulties you have with planning and following journeys and how you manage them",
+          "questionType": "TEXT_AREA_QUESTION"
+        }
+      ]
+    }
+  ]
+}

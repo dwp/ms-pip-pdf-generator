@@ -1,5 +1,6 @@
 package uk.gov.dwp.health.pip.pdf.generator.service.impl;
 
+import java.util.Collections;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.http.HttpEntity;
@@ -14,8 +15,6 @@ import uk.gov.dwp.health.pip.pdf.generator.config.properties.HtmlPdfConfigProper
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfClientException;
 import uk.gov.dwp.health.pip.pdf.generator.http.XhtmlToPdfRequest;
 import uk.gov.dwp.health.pip.pdf.generator.service.RestClientService;
-
-import java.util.Collections;
 
 @Slf4j
 @Service
