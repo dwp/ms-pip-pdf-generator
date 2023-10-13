@@ -86,7 +86,7 @@ public class JsonTransformation {
   }
 
   private String getFormattedDate(Date date) {
-    SimpleDateFormat dtFormat = new SimpleDateFormat(HTMLConstants.INPUT_DATE_FORMAT);
+    SimpleDateFormat dtFormat = new SimpleDateFormat(HTMLConstants.OUTPUT_DATE_FORMAT);
     return dtFormat.format(date);
   }
 

@@ -7,18 +7,18 @@ import uk.gov.dwp.health.pip.forms.FormSpecification;
 import uk.gov.dwp.health.pip.forms.viewspecifications.BooleanQuestion;
 import uk.gov.dwp.health.pip.forms.viewspecifications.RadioQuestion;
 import uk.gov.dwp.health.pip.forms.viewspecifications.elements.RadioOption;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.BooleanResponse;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionAnswer;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.RadioResponse;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.ShortTextResponse;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.TextAreaResponse;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.BooleanResponseDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionAnswerDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.RadioResponseDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.ShortTextResponseDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.TextAreaResponseDto;
 import uk.gov.dwp.health.pip.pdf.generator.util.QueryUtils;
 
 @Component
 @RequiredArgsConstructor
 public class QuestionTypeFactory {
 
-  public Optional<String> getQuestionAnswerWithResponse(QuestionAnswer questionAnswer,
+  public Optional<String> getQuestionAnswerWithResponse(QuestionAnswerDto questionAnswer,
       FormSpecification formSpecification) {
     return switch (questionAnswer.getQuestionType()) {
       case BOOL_QUESTION -> mapToBoolean(questionAnswer, formSpecification);
@@ -29,9 +29,9 @@ public class QuestionTypeFactory {
     };
   }
 
-  private Optional<String> mapToRadioQuestion(QuestionAnswer questionAnswer,
+  private Optional<String> mapToRadioQuestion(QuestionAnswerDto questionAnswer,
       FormSpecification formSpecification) {
-    RadioResponse radioResponse = (RadioResponse) questionAnswer;
+    RadioResponseDto radioResponse = (RadioResponseDto) questionAnswer;
     RadioQuestion radioViewSpec = (RadioQuestion) formSpecification.getViewSpecificationByReference(
         questionAnswer.getReference());
     if (radioViewSpec != null) {
@@ -43,17 +43,17 @@ public class QuestionTypeFactory {
     return Optional.empty();
   }
 
-  private Optional<String> mapToShortTextQuestion(QuestionAnswer questionAnswer) {
-    return Optional.ofNullable(((ShortTextResponse) questionAnswer).getResponse());
+  private Optional<String> mapToShortTextQuestion(QuestionAnswerDto questionAnswer) {
+    return Optional.ofNullable(((ShortTextResponseDto) questionAnswer).getResponse());
   }
 
-  private Optional<String> mapToTextArea(QuestionAnswer questionAnswer) {
-    return Optional.ofNullable(((TextAreaResponse) questionAnswer).getResponse());
+  private Optional<String> mapToTextArea(QuestionAnswerDto questionAnswer) {
+    return Optional.ofNullable(((TextAreaResponseDto) questionAnswer).getResponse());
   }
 
-  private Optional<String> mapToBoolean(QuestionAnswer questionAnswer,
+  private Optional<String> mapToBoolean(QuestionAnswerDto questionAnswer,
       FormSpecification formSpecification) {
-    BooleanResponse booleanResponse = (BooleanResponse) questionAnswer;
+    BooleanResponseDto booleanResponse = (BooleanResponseDto) questionAnswer;
     BooleanQuestion booleanViewSpec = (BooleanQuestion) formSpecification
         .getViewSpecificationByReference(questionAnswer.getReference());
     if (booleanViewSpec != null) {

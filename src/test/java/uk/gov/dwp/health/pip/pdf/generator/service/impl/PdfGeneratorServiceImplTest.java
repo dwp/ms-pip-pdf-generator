@@ -16,6 +16,7 @@ import static uk.gov.dwp.health.pip.pdf.generator.util.GetFormSpecificationUtil.
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Map;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.BeforeEach;
@@ -146,7 +147,7 @@ class PdfGeneratorServiceImplTest {
   }
 
   @Test
-  void and_valid_dto_return_pdf_response_as_string() throws IOException {
+  void and_valid_dto_return_pdf_response_as_string() throws IOException, ParseException {
     exampleFormSpec = getTestFormSpecAsFormSpec();
     when(getFormSpecificationService.getFormSpecificationById(any())).thenReturn(exampleFormSpec);
     when(submissionDtoToHtmlMapper.writeVersionedDataToTemplate(any(), any(), any())).thenReturn(
@@ -161,7 +162,7 @@ class PdfGeneratorServiceImplTest {
   }
 
   @Test
-  void testHandleVersionedPdfGenerationThrowsPdfConverterException() throws IOException {
+  void testHandleVersionedPdfGenerationThrowsPdfConverterException() throws IOException, ParseException {
     exampleFormSpec = getTestFormSpecAsFormSpec();
     when(getFormSpecificationService.getFormSpecificationById(any())).thenReturn(exampleFormSpec);
     when(submissionDtoToHtmlMapper.writeVersionedDataToTemplate(any(), any(), any())).thenReturn(

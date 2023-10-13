@@ -3,6 +3,7 @@ package uk.gov.dwp.health.pip.pdf.generator.service.impl;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,10 +78,12 @@ public class PdfGeneratorServiceImpl implements PdfGeneratorService {
       ResponseEntity<String> pdfResponse = pdfService.postCreateRequest(
           templateWithData);
       return pdfResponse.getBody();
-    } catch (PdfClientException | IOException ex) {
+    } catch (PdfClientException | IOException | ParseException ex) {
       final String msg =
-          String.format("Pdf generation failed for claim [%s] - %s", submissionDto.getClaimantId(),
-              ex.getMessage());
+          String.format("Pdf generation failed for claim [%s] - %s",
+              submissionDto.getClaimantId(),
+              ex.getMessage()
+          );
       log.error(msg);
       throw new PdfGenerationException(msg);
     }

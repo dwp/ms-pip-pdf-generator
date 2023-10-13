@@ -12,7 +12,7 @@
 
 	<groupId>uk.gov.dwp.health.pip</groupId>
 	<artifactId>ms-pip-pdf-generator</artifactId>
-	<version>2.0.0</version>
+	<version>2.2.0</version>
 
 	<name>ms-pip-pdf-generator</name>
 	<description>Micro service to generate PDF file using pip2 health and disability data</description>
@@ -21,10 +21,10 @@
 		<allure-junit5.version>2.23.0</allure-junit5.version>
 		<allure-rest-assured.version>2.23.0</allure-rest-assured.version>
 		<allure.results.directory>allure-results</allure.results.directory>
-		<aws-java-sdk-s3.version>1.12.528</aws-java-sdk-s3.version>
-		<aws.s3.version>2.20.125</aws.s3.version>
+		<aws-java-sdk-s3.version>1.12.543</aws-java-sdk-s3.version>
+		<aws.s3.version>2.20.140</aws.s3.version>
 		<client.base.package.name>uk.gov.dwp.health.pip.pdf.generator</client.base.package.name>
-		<commons-codec.version>1.15</commons-codec.version>
+		<commons-codec.version>1.16.0</commons-codec.version>
 		<commons-io.version>2.13.0</commons-io.version>
 		<commons-text>1.10.0</commons-text>
 		<dwp-meta-data-logger.version>2.0.0-56b86a2e</dwp-meta-data-logger.version>
@@ -34,10 +34,10 @@
 		<dwp.secure-sockets.version>1.6.2</dwp.secure-sockets.version>
 		<exec.maven.plugin.version>3.1.0</exec.maven.plugin.version>
 		<extentreport-allure-annotatio.version>1.0.2</extentreport-allure-annotatio.version>
-		<form-specification-model.version>1.0.0-20230830.110423-128</form-specification-model.version>
+		<form-specification-model.version>1.0.0-20231009.143426-171</form-specification-model.version>
 		<io-swagger-v3.version>2.2.15</io-swagger-v3.version>
 		<jackson-nullable.version>0.2.6</jackson-nullable.version>
-		<jackson.version>2.15.1</jackson.version>
+		<jackson.version>2.15.2</jackson.version>
 		<java.version>17</java.version>
 		<json.version>20230618</json.version>
 		<lidalia.version>1.2.0</lidalia.version>
@@ -57,13 +57,13 @@
 		<plugin.pmd.version>3.21.0</plugin.pmd.version>
 		<plugin.projectinfo.version>3.4.5</plugin.projectinfo.version>
 		<plugin.rest-assured-extent-report-plugin.version>2.2.0
-    </plugin.rest-assured-extent-report-plugin.version>
+        </plugin.rest-assured-extent-report-plugin.version>
 		<plugin.spotbugs.version>4.7.3.5</plugin.spotbugs.version>
 		<plugin.surefire.version>3.1.2</plugin.surefire.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<rest-assured.version>5.3.1</rest-assured.version>
-		<snakeyaml.version>2.0</snakeyaml.version>
+		<snakeyaml.version>2.2</snakeyaml.version>
 		<spotbugs.version>4.7.3</spotbugs.version>
 		<spring-framework.version>5.3.27</spring-framework.version>
 		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>

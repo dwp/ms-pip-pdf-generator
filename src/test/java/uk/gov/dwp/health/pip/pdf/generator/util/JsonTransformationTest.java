@@ -43,12 +43,12 @@ class JsonTransformationTest {
   @Test
   void testTransformPipFormSuccess() throws IOException {
     Map<String, String> result = jsonTransformation.transformPipForm(pipHealthDisabilityForm);
-    assertEquals("13-11-2020", result.get("submissionDate"));
+    assertEquals("13 November 2020", result.get("submissionDate"));
     assertEquals("MR", result.get("title"));
     assertEquals("claimant_first_name", result.get("firstName"));
     assertEquals("claimant_last_name", result.get("lastName"));
     assertEquals("RN 00 00 64 C", result.get("nino"));
-    assertEquals("08-08-1970", result.get("dateOfBirth"));
+    assertEquals("08 August 1970", result.get("dateOfBirth"));
     assertEquals("Yes", result.get("foodAffected"));
     assertEquals(
         "<br/>\n"
@@ -151,7 +151,7 @@ class JsonTransformationTest {
 
     Supplier<String> todayString =
         () -> {
-          SimpleDateFormat fmt = new SimpleDateFormat(HTMLConstants.INPUT_DATE_FORMAT);
+          SimpleDateFormat fmt = new SimpleDateFormat(HTMLConstants.OUTPUT_DATE_FORMAT);
           return fmt.format(new Date());
         };
     assertEquals(todayString.get(), result.get("submissionDate"));
@@ -159,7 +159,7 @@ class JsonTransformationTest {
     assertEquals("claimant_&quot;first_name", result.get("firstName"));
     assertEquals("claimant_last_name&amp;", result.get("lastName"));
     assertEquals("RN 00 00 64 C", result.get("nino"));
-    assertEquals("08-08-1970", result.get("dateOfBirth"));
+    assertEquals("08 August 1970", result.get("dateOfBirth"));
     assertEquals("Yes", result.get("foodAffected"));
     assertEquals(
         "<br/>\n"

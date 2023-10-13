@@ -1,20 +1,31 @@
 package uk.gov.dwp.health.pip.pdf.generator.mappers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.commons.text.StringSubstitutor;
 import org.springframework.stereotype.Component;
 import uk.gov.dwp.health.pip.forms.FormSpecification;
+import uk.gov.dwp.health.pip.forms.ViewSpecification;
 import uk.gov.dwp.health.pip.forms.viewspecifications.TaskList;
+import uk.gov.dwp.health.pip.forms.viewspecifications.abstractions.SectionEndViewSpecification;
 import uk.gov.dwp.health.pip.forms.viewspecifications.elements.TaskListTask;
+import uk.gov.dwp.health.pip.pdf.generator.constants.HTMLConstants;
 import uk.gov.dwp.health.pip.pdf.generator.exception.ViewSpecificationNotFoundException;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.MultiPartResponse;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.PersonalDetails;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionAnswer;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionAnswerSection;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.MultiPartResponseDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.PersonalDetailsDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionAnswerDto;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionAnswerSectionDto;
 import uk.gov.dwp.health.pip.pdf.generator.openapi.model.QuestionType;
 import uk.gov.dwp.health.pip.pdf.generator.openapi.model.SubmissionDto;
 import uk.gov.dwp.health.pip.pdf.generator.util.QueryUtils;
@@ -35,7 +46,7 @@ public class SubmissionDtoToHtmlMapper {
 
   public String writeVersionedDataToTemplate(
       SubmissionDto submissionDto,
-      FormSpecification formSpec, String templateHtml) {
+      FormSpecification formSpec, String templateHtml) throws ParseException {
 
     questionSectionsString = new StringBuilder();
     Map<String, String> submissionTemplateMap = new HashMap<>(mapPersonalDetails(submissionDto));
@@ -50,19 +61,41 @@ public class SubmissionDtoToHtmlMapper {
     return submissionTemplateString.toString();
   }
 
-  private Map<String, String> mapPersonalDetails(SubmissionDto submissionDto) {
+  private Map<String, String> mapPersonalDetails(SubmissionDto submissionDto)
+      throws ParseException {
 
     Map<String, String> personalDetailsMap = new HashMap<>();
-    PersonalDetails personalDetails = submissionDto.getRegistrationDetails().getPersonalDetails();
-    personalDetailsMap.put("firstName", personalDetails.getFirstName());
-    personalDetailsMap.put("lastName", personalDetails.getSurname());
-    personalDetailsMap.put("nino", personalDetails.getNationalInsuranceNumber());
-    personalDetailsMap.put("dateOfBirth", personalDetails.getDateOfBirth());
-    personalDetailsMap.put("submissionDate", submissionDto.getSubmissionDate());
+    PersonalDetailsDto personalDetails = submissionDto.getRegistrationDetails()
+        .getPersonalDetails();
+    personalDetailsMap.put("firstName", StringEscapeUtils
+        .escapeXml11(personalDetails.getFirstName()));
+    personalDetailsMap.put("lastName", StringEscapeUtils
+        .escapeXml11(personalDetails.getSurname()));
+    personalDetailsMap.put("nino", personalDetails.getNationalInsuranceNumber()
+        .replaceAll("..", "$0 "));
+    personalDetailsMap.put("dateOfBirth", getFormattedDate(personalDetails.getDateOfBirth()));
+    personalDetailsMap.put("submissionDate", getFormattedDate(submissionDto.getSubmissionDate()));
     return personalDetailsMap;
   }
 
-  private String mapSections(FormSpecification formSpec, List<QuestionAnswerSection> responses) {
+  private String getFormattedDate(final String dateIn) throws ParseException {
+    String dateOut = dateIn;
+    if (dateIn != null) {
+      Date date = null;
+      if (dateIn.matches(HTMLConstants.INPUT_DATE_REGEX_YMD)) {
+        date = new SimpleDateFormat(HTMLConstants.INPUT_DATE_FORMAT_YMD).parse(dateIn);
+      } else if (dateIn.matches(HTMLConstants.INPUT_DATE_REGEX_DMY)) {
+        date = new SimpleDateFormat(HTMLConstants.INPUT_DATE_FORMAT_DMY).parse(dateIn);
+      }
+      if (date != null) {
+        SimpleDateFormat dtFormat = new SimpleDateFormat(HTMLConstants.OUTPUT_DATE_FORMAT);
+        dateOut = dtFormat.format(date);
+      }
+    }
+    return dateOut;
+  }
+
+  private String mapSections(FormSpecification formSpec, List<QuestionAnswerSectionDto> responses) {
     TaskList landingViewSpec = (TaskList) formSpec.getViewSpecificationByReference("landing");
 
     if (landingViewSpec == null) {
@@ -87,7 +120,7 @@ public class SubmissionDtoToHtmlMapper {
 
           var sectionReferences = sectionTasks.stream().map(TaskListTask::getReference).toList();
 
-          List<QuestionAnswerSection> questionAnswersForSection = QueryUtils.findByPredicate(
+          List<QuestionAnswerSectionDto> questionAnswersForSection = QueryUtils.findByPredicate(
               responses, x -> sectionReferences
                   .contains(x.getReference())).toList();
 
@@ -100,8 +133,12 @@ public class SubmissionDtoToHtmlMapper {
     return questionSectionsString.toString();
   }
 
-  private void mapToQuestionAnswerSection(QuestionAnswerSection questionAnswerSection,
+  private void mapToQuestionAnswerSection(QuestionAnswerSectionDto questionAnswerSection,
       FormSpecification formSpecification) {
+
+    if (questionAnswerSection.getReference().equals("about-your-health-professionals")) {
+      sortHealthProfessionalsSection(questionAnswerSection, formSpecification);
+    }
 
     QueryUtils.findByPredicate(questionAnswerSection.getQuestionAnswers(),
             questionAnswer -> !questionAnswer.getQuestionType().equals(QuestionType.ADVICE))
@@ -118,7 +155,8 @@ public class SubmissionDtoToHtmlMapper {
                 formSpecification);
             if (answerWithValue.isPresent()) {
               questionMap.put("questionHeading", questionAnswer.getQuestion());
-              questionMap.put("questionAnswer", answerWithValue.get());
+              questionMap.put("questionAnswer", StringEscapeUtils
+                  .escapeXml11(answerWithValue.get()));
               addToString(questionMap, QUESTION_TEMPLATE, questionSectionsString);
             }
           }
@@ -126,14 +164,15 @@ public class SubmissionDtoToHtmlMapper {
   }
 
   private void handleMultiPartQuestion(
-      QuestionAnswer questionAnswer,
+      QuestionAnswerDto questionAnswer,
       FormSpecification formSpecification) {
     Map<String, String> valuesMap = new HashMap<>();
 
     valuesMap.put("multiPartHeading", questionAnswer.getQuestion());
     addToString(valuesMap, MULTI_PART_HEADING_TEMPLATE, questionSectionsString);
 
-    List<QuestionAnswer> multiQResponses = ((MultiPartResponse) questionAnswer).getResponses();
+    List<QuestionAnswerDto> multiQResponses =
+        ((MultiPartResponseDto) questionAnswer).getResponses();
     multiQResponses.forEach(multiQResponse -> {
 
       Map<String, String> newMap = new HashMap<>();
@@ -141,7 +180,8 @@ public class SubmissionDtoToHtmlMapper {
           .getQuestionAnswerWithResponse(multiQResponse, formSpecification);
       if (answer.isPresent()) {
         newMap.put("questionHeading", multiQResponse.getQuestion());
-        newMap.put("questionAnswer", answer.get());
+        newMap.put("questionAnswer", StringEscapeUtils
+            .escapeXml11(answer.get()));
 
         if (multiQResponse.getQuestion() == null) {
           addToString(newMap, MULTI_PART_QUESTION_TEMPLATE, questionSectionsString);
@@ -157,5 +197,40 @@ public class SubmissionDtoToHtmlMapper {
       StringBuilder stringToAddTo) {
     StringSubstitutor stringSub = new StringSubstitutor(valuesMap);
     stringToAddTo.append(stringSub.replace(templateToMapTo));
+  }
+
+  private void sortHealthProfessionalsSection(
+      QuestionAnswerSectionDto questionAnswerSection, FormSpecification formSpecification) {
+
+    var viewSpecsForSection = getViewSpecificationsRelatedToThisSection(formSpecification,
+        questionAnswerSection.getReference());
+
+    ViewSpecification viewSpecification =
+        QueryUtils.findOneByPredicate(viewSpecsForSection,
+            x -> x instanceof SectionEndViewSpecification);
+
+    if (viewSpecification instanceof SectionEndViewSpecification y) {
+      var professionalsListOrder = y.getQuestionReferences();
+      Map<String, Integer> order = IntStream.range(0, professionalsListOrder.size())
+          .boxed()
+          .collect(Collectors.toMap(
+              professionalsListOrder::get,
+              Function.identity()
+          ));
+
+      Comparator<QuestionAnswerDto> comparator = Comparator.comparingInt(
+          obj -> order.getOrDefault(obj.getReference(), order.size()));
+
+      questionAnswerSection.getQuestionAnswers().sort(comparator);
+    }
+  }
+
+  private List<ViewSpecification> getViewSpecificationsRelatedToThisSection(
+      FormSpecification formSpecification, String reference) {
+
+    return QueryUtils.findByPredicate(formSpecification.getViews(),
+            x -> x.getParentReference() != null
+                && x.getParentReference().equals(reference))
+        .toList();
   }
 }

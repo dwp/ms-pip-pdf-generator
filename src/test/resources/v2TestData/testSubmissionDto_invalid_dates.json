@@ -3,13 +3,13 @@
   "claimantId": "645a11207b05c5770aaa56af",
   "formSpecificationId": "123456789",
   "submissionId": "645a1507eb91a55240b8aadf",
-  "submissionDate": "2023-04-01",
+  "submissionDate": "Not a valid date",
   "registrationDetails": {
     "personalDetails": {
       "surname": "TestSurname",
       "firstName": "TestFirst",
       "nationalInsuranceNumber": "SC000239A",
-      "dateOfBirth": "01-01-2000",
+      "dateOfBirth": "Invalid date",
       "postcode": "E5 9AA"
     }
   },
