@@ -1,78 +1,118 @@
 # ms-pip2-pdf-generator
 
-A Micro-service generates a PDF document from data (in JSON format) captured by PIP2 HTML online form. API spec can be found [here](api-spec/openapi-spec-v1.yaml)
+A microservice that maps a PIP2 Versioned application received
+from [ms-health-capture-manager](https://gitlab.com/dwp/health/pip-apply/components/ms-pip2-health-capture-manager)
+into HTML format to then generate a PDF using
+the HTML-TO-PDF_A
+microservice [ms-html-to-pdfa](https://gitlab.com/health/shared-components/components/ms-html-to-pdfa)
 
-# Example PIP application data in JSON 
+## API SPEC
 
-```json
+The API spec can be found at [here](schemas/api-spec/ms-pip2-pdf-generator/openapi-spec-v2.yaml)
 
-```
+**NOTE**: *The V1 api spec is deprecated alongside any associated methods that are not related to
+versioning*
+
+# Example PIP2 application data in JSON
+
+An example of the application data which is sent across from **ms-health-capture-manager** is
+available [here](src/test/resources/v2TestData/testSubmissionDto.json)
+
 ## Dependency
 
-* Common PIP data model [library](https://gitlab.com/health-pdu/save-and-resume/pip2-html-commons:+v1.0.0)
+* [Form specification model]
+  (https://gitlab.com/dwp/health/pip-apply/libraries/form-specification-model)
 
-* HTML-TO-PDF_A micro-service [ms-html-to-pdfa](https://gitlab.com/health/shared-components/components/ms-html-to-pdfa)
+* HTML-TO-PDF_A
+  micro-service [ms-html-to-pdfa](https://gitlab.com/health/shared-components/components/ms-html-to-pdfa)
 
 ## Build and run the application locally
 
-This is a standard SpringBoot application with all the configuration items held in `src/main/resources/application.yml` and bundled 
-into the project at build.
+To run the application locally you need to have a locally built version
+of [pip-apply-mocks](https://gitlab.com/dwp/health/pip-apply/components/pip-apply-mocks)
 
-```bash
+1. Clone repo above and then build using below command
+
+```zsh
+docker build -t pipcs-api-registration .
+```
+
+1. Run the docker-compose-local.yml file to spin up the application and dependencies locally
+
+```zsh
+docker-compose -f docker-compose-local.yml up -d
+```
+
+## Unit Testing
+
+To run unit tests
+
+```zsh
 mvn clean verify
 ```
+
 to build and vulnerability check
-```bash
+
+```zsh
 mvn spring-boot:run
 
 or
 
 java -jar target/ms-pip2-pdf-generator-<artifactId>.jar
 ```
-to run
-
-## Run in a docker container
-
-```bash
-
-docker-compose up --scale api-test=0
-
-```
-
-will build and run the application with other dependent services stubbed
 
 ## Running the Component Tests
 
-### Running Locally
 Run the following command to spin up the service in docker
-```bash 
-docker-compose up --scale api-test=0
+
+#### With Docker
+
+```zsh 
+docker-compose up
 ```
+
+#### With IntelliJ/Maven
+
+Ensure the services are running in the background using docker
+
+```zsh
+docker-compose -f docker-compose-local.yml up -d
+```
+
 Open another terminal window and run the following maven command to execute the tests locally
+
 ```bash 
 mvn clean verify -Papi-component-tests
 ```
 
 ## Configuration
 
-All configuration is listed in `src/main/resources/application.yml` and follows the standard spring convention for yml file notation.  
-The custom setup is configured with the following section and can be overridden (either on the command line or by environment variables).
-The main configuration is serialised into handler classes 
-`uk.gov.dwp.health.pdf.generator.config.PdfGeneratorConfig.java`
+The following are required config properties
 
-```yaml
-AWS_ENCRYPTION_DATA_KEY=kms_key
-AWS_S3_AWS_REGION=eu-west-2
-AWS_S3_BUCKET=S3_bucket_name
-HTML_PDF_GENERATOR_BASE_URL=ms-html-pdf-url **(note 1)**
-HTML_PDF_GENERATOR_ENDPOINT_PATH=generatePdf **(note 2)**
-HTML_PDF_GENERATOR_HTML_TO_PDF_CONFORMANCE_LEVEL=PDFA_1_A **(note 3)**
-```
-
-* `HTML_PDF_GENERATOR_BASE_URL`  URL to ms-html-to-pdfa micro-service **(note 1)**
-* `HTML_PDF_GENERATOR_ENDPOINT_PATH` Endpoint path to ms-html-to-pdfa microservice **(note 2)**  
-* `HTML_PDF_GENERATOR_HTML_TO_PDF_CONFORMANCE_LEVEL` = pdf conformance level **(note 3)**
-
+| Property                                           | Example value                              | Description                                                                                                           | 
+|:---------------------------------------------------|:-------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|
+| `HEALTH_CAPTURE_MANAGER_BASE_URL`                  | `ms-health-capture-manager-url  `          | URL to [ms-health-capture-manager](https://gitlab.com/dwp/health/pip-apply/components/ms-pip2-health-capture-manager) |
+| `HEALTH_CAPTURE_MANAGER_ENDPOINT_PATH`             | `form-specification/{formSpecificationId}` | Endpoint path within health-capture-manager to retrieve the formSpecification                                         |
+| `AWS_ENCRYPTION_DATA_KEY`                          | `ksm-key`                                  |                                                                                                                       |
+| `AWS_S3_AWS_REGION`                                | `eu-west-2  `                              |                                                                                                                       |
+| `AWS_S3_BUCKET`                                    | `bucket-name`                              | Name of location in S3 to store generated PDF                                                                         |
+| `HTML_PDF_GENERATOR_BASE_URL`                      | `ms-html-pdf-url`                          | URL to ms-html-to-pdfa micro-service                                                                                  |
+| `HTML_PDF_GENERATOR_ENDPOINT_PATH`                 | `generatePdf`                              | Endpoint path to ms-html-to-pdfa microservice                                                                         |
+| `HTML_PDF_GENERATOR_HTML_TO_PDF_CONFORMANCE_LEVEL` | `PDFA_1_A`                                 | pdf conformance level                                                                                                 |
 
 ## docker
+
 The docker image is built on the distroless base image
+
+## Troubleshooting
+
+This repository often fails in pipeline with errors such as
+
+```html
+  cannot find docker...
+```
+
+To resolve this ensure that:
+
+1. Shared runners are **enabled** in the gitlab CI/CD settings
+2. Group runners are **disabled** in the gitlab CI/CD settings

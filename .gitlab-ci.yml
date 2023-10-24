@@ -86,9 +86,6 @@ create-develop-nightly-schedule:
 
 trivy-container:
   extends: .trivy-container-base
-  variables:
-    HIGH_SUPPRESSIONS: "CVE-2023-21930"
-
 
 ### DEFAULT RUNNER ###
 default:
