@@ -6,11 +6,11 @@ project:
   - project_id: 31923141
     component_name: ms-pip-pdf-generator
 
-    version: 2.3.0
+    version: 2.4.0
 
     last_verified:
-      date: "2023-20-11"
-      name: "@jack.dempster1"
+      date: "2024-1-09"
+      name: "@ryan.thompson"
 
     tags:
       payments: false

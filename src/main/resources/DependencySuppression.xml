@@ -8,6 +8,7 @@
     <cve>CVE-2023-42795</cve>
     <cve>CVE-2023-45648</cve>
     <cve>CVE-2023-44487</cve>
+    <cve>CVE-2023-46589</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
@@ -16,6 +17,7 @@
       file name: bc-fips-1.0.2.3.jar
       ]]></notes>
     <cve>CVE-2022-45146</cve>
+    <cve>CVE-2023-33202</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[spring-web-5.3.27.jar]]></notes>
@@ -61,5 +63,15 @@
     <cve>CVE-2023-42794</cve>
     <cve>CVE-2023-42795</cve>
     <cve>CVE-2023-45648</cve>
+    <cve>CVE-2023-46589</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      <![CDATA[file name:
+      logback-core-1.2.12.jar
+      ]]>
+    </notes>
+    <cve>CVE-2023-6378</cve>
+    <cve>CVE-2023-6481</cve>
   </suppress>
 </suppressions>
