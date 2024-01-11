@@ -63,6 +63,11 @@ push-to-ecr-nonprodaws:
   tags:
       - docker-in-docker
 
+push-to-ecr-prodaws:
+  extends: .push-to-ecr
+  tags:
+    - docker-in-docker
+
 include:
   - local: "/gitlab-ci/includes.yml"
 
