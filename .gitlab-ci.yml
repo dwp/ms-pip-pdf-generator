@@ -39,34 +39,9 @@ stages:
 
 docker-build:
   extends: .docker-build-template
-  tags:
-    - docker-in-docker
   before_script:
     - echo $DT_API_TOKEN | docker login -u pik94420 --password-stdin https://pik94420.live.dynatrace.com
-  services:
-    - docker:24.0.5-dind
 
-container-test-command:
-  extends: .container-test-template
-  tags:
-    - docker-in-docker
-
-sast-container:
-  extends: .sast-container-base
-  services:
-    - name: docker:dind
-  tags:
-    - docker-in-docker
-
-push-to-ecr-nonprodaws:
-  extends: .push-to-ecr
-  tags:
-      - docker-in-docker
-
-push-to-ecr-prodaws:
-  extends: .push-to-ecr
-  tags:
-    - docker-in-docker
 
 include:
   - local: "/gitlab-ci/includes.yml"
@@ -93,8 +68,6 @@ required-fragment-check:
 
 api-test:
   extends: .docker-compose-run
-  tags:
-    - docker-in-docker
   stage: component-test
   services:
     - name: docker:dind@sha256:f23f0a4013f184f6af3a3892dd12eba74bdbc5988d2a54ae468a8a6a44078434
@@ -127,8 +100,3 @@ create-develop-nightly-schedule:
     SCHEDULE_BRANCH: develop
     SCHEDULE_CRON: "0 04 * * *"
     RANDOMIZE_MINS: "true"
-
-trivy-container:
-  extends: .trivy-container-base
-  tags:
-    - docker-in-docker
