@@ -12,7 +12,7 @@
 
 	<groupId>uk.gov.dwp.health.pip</groupId>
 	<artifactId>ms-pip-pdf-generator</artifactId>
-	<version>2.4.0</version>
+	<version>2.4.1</version>
 
 	<name>ms-pip-pdf-generator</name>
 	<description>Micro service to generate PDF file using pip2 health and disability data</description>

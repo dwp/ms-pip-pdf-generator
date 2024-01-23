@@ -57,7 +57,7 @@ public class SubmissionDtoToHtmlMapper {
     StringBuilder submissionTemplateString = new StringBuilder();
     addToString(submissionTemplateMap, templateHtml, submissionTemplateString);
 
-    log.info(submissionTemplateString.toString());
+    log.debug(submissionTemplateString.toString());
     return submissionTemplateString.toString();
   }
 
