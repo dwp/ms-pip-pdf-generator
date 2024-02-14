@@ -12,7 +12,7 @@
 
 	<groupId>uk.gov.dwp.health.pip</groupId>
 	<artifactId>ms-pip-pdf-generator</artifactId>
-	<version>2.4.1</version>
+	<version>2.5.0</version>
 
 	<name>ms-pip-pdf-generator</name>
 	<description>Micro service to generate PDF file using pip2 health and disability data</description>
@@ -34,7 +34,7 @@
 		<dwp.secure-sockets.version>1.6.2</dwp.secure-sockets.version>
 		<exec.maven.plugin.version>3.1.0</exec.maven.plugin.version>
 		<extentreport-allure-annotatio.version>1.0.2</extentreport-allure-annotatio.version>
-		<form-specification-model.version>1.0.0-20231017.082703-181</form-specification-model.version>
+		<form-specification-model.version>1.6.0-3b12bd2e</form-specification-model.version>
 		<io-swagger-v3.version>2.2.15</io-swagger-v3.version>
 		<jackson-nullable.version>0.2.6</jackson-nullable.version>
 		<jackson.version>2.15.2</jackson.version>
