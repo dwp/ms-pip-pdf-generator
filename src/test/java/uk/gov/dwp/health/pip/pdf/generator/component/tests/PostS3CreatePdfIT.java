@@ -1,22 +1,20 @@
 package uk.gov.dwp.health.pip.pdf.generator.component.tests;
 
-import io.restassured.response.Response;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import uk.gov.dwp.health.pip.pdf.generator.component.dto.responses.ErrorResponse;
-import uk.gov.dwp.health.pip.pdf.generator.component.dto.responses.S3CreatePdfResponse;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static uk.gov.dwp.health.pip.pdf.generator.component.utils.UrlBuilderUtil.postCreateS3PdfUrl;
+
+import io.restassured.response.Response;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import uk.gov.dwp.health.pip.pdf.generator.component.dto.responses.ErrorResponse;
+import uk.gov.dwp.health.pip.pdf.generator.component.dto.responses.S3CreatePdfResponse;
 
 class PostS3CreatePdfIT extends ApiTest {
   @Test
@@ -38,8 +36,7 @@ class PostS3CreatePdfIT extends ApiTest {
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED.value());
     assertThat(s3CreatePdfResponse.getS3Ref())
-        .contains(
-            "FCP_b0a0d4fb-e6c8-419e-8cb9-af45914bd1a6_PIP-FORM.pdf_");
+        .contains("FCP_b0a0d4fb-e6c8-419e-8cb9-af45914bd1a6_PIP-FORM.pdf_");
     assertThat(s3CreatePdfResponse.getBucket()).isEqualTo("pip-bucket");
     assertThat(s3CreatePdfResponse.getFileSizeKb()).isEqualTo("614");
   }
@@ -76,6 +73,22 @@ class PostS3CreatePdfIT extends ApiTest {
 
     JSONObject jsonObject = new JSONObject();
     jsonObject.put("claim_id", "b0a0d4fb-e6c8-419e-8cb9-af45914bd1a6");
+    jsonObject.put("bucket", "pip-bucket");
+    String requestBody = jsonObject.toString();
+
+    Response response = postRequest(postCreateS3PdfUrl(), requestBody);
+    ErrorResponse errorResponse = response.as(ErrorResponse.class);
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+    assertThat(errorResponse.getMessage()).contains("Validation failed");
+  }
+
+  @Test
+  void should_return_an_error_message_and_400_response_code_when_claimId_empty()
+      throws JSONException {
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put("claim_id", "");
+    jsonObject.put("form_data", "form-data");
     jsonObject.put("bucket", "pip-bucket");
     String requestBody = jsonObject.toString();
 

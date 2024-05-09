@@ -1,6 +1,6 @@
 package uk.gov.dwp.health.pip.pdf.generator.api;
 
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,9 +51,9 @@ public class AppControllerAdvise {
 
   @ExceptionHandler(
       value = {
-          ConstraintViolationException.class,
-          MethodArgumentNotValidException.class,
-          HttpMessageNotReadableException.class,
+        ConstraintViolationException.class,
+        MethodArgumentNotValidException.class,
+        HttpMessageNotReadableException.class,
       })
   public final ResponseEntity<FailureResponse> handle400(Exception ex) {
     return responseWithFailureResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);

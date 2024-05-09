@@ -51,6 +51,9 @@ sast-container:
 trivy-container:
   tags:
     - "docker-in-docker"
+  extends: .trivy-container-base
+  variables:
+    HIGH_SUPPRESSIONS: ""
 
 container-test-command:
   tags:
@@ -82,7 +85,7 @@ required-fragment-check:
     - export MS_HTML_TO_PDFA_IMAGE=$(aws ssm get-parameter --name "/artifact/shared/$MS_HTML_TO_PDFA_NAME/$MS_HTML_TO_PDFA_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
     - echo $DT_API_TOKEN | docker login -u pik94420 --password-stdin https://pik94420.live.dynatrace.com
   services:
-    - name: docker:dind@sha256:f23f0a4013f184f6af3a3892dd12eba74bdbc5988d2a54ae468a8a6a44078434
+    - name: docker:dind@sha256:a2d55c6061a342e42db62654b7b7cdf16113828a80b3827cbd9453806c08549c
       command: [
         "--registry-mirror=https://docker-cache.nonprod.dwpcloud.uk:5000",
         "--insecure-registry=nexus.service.health-dev.dwpcloud.uk:5000" ]
@@ -93,7 +96,7 @@ api-test:
     - "docker-in-docker"
   stage: component-test
   services:
-    - name: docker:dind@sha256:f23f0a4013f184f6af3a3892dd12eba74bdbc5988d2a54ae468a8a6a44078434
+    - name: docker:dind@sha256:a2d55c6061a342e42db62654b7b7cdf16113828a80b3827cbd9453806c08549c
       command: [
         "--registry-mirror=https://docker-cache.nonprod.dwpcloud.uk:5000",
         "--insecure-registry=nexus.service.health-dev.dwpcloud.uk:5000" ]

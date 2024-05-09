@@ -2,8 +2,8 @@ package uk.gov.dwp.health.pip.pdf.generator.config.properties;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

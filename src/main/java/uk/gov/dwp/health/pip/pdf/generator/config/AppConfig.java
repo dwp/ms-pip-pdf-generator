@@ -1,18 +1,15 @@
 package uk.gov.dwp.health.pip.pdf.generator.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-import uk.gov.dwp.health.logging.OutgoingInterceptor;
 import uk.gov.dwp.health.pip.pdf.generator.util.FileUtils;
 import uk.gov.dwp.health.pip.pdf.generator.util.JsonTransformation;
 import uk.gov.dwp.health.pip2.common.marshaller.Pip2HealthDisabilityFormMarshaller;
-
-import java.util.Base64;
-import java.util.List;
 
 @Configuration
 public class AppConfig {
@@ -25,14 +22,9 @@ public class AppConfig {
   @Autowired
   @Bean
   public RestTemplate restTemplate(
-      final RestTemplateBuilder restTemplateBuilder,
-      final OutgoingInterceptor outgoingInterceptor,
-      final HttpRespStatusHandler errorHandler) {
+      final RestTemplateBuilder restTemplateBuilder, final HttpRespStatusHandler errorHandler) {
 
-    return restTemplateBuilder
-        .interceptors(List.of(outgoingInterceptor))
-        .errorHandler(errorHandler)
-        .build();
+    return restTemplateBuilder.errorHandler(errorHandler).build();
   }
 
   @Bean

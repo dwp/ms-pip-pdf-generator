@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfGenerationException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.TaskException;
@@ -59,6 +60,7 @@ class PdfGeneratorApiImplTest {
     assertEquals(HttpStatus.CREATED, actual.getStatusCode());
     assertEquals("form-test id.pdf", actual.getHeaders().getContentDisposition().getFilename());
     assertEquals("attachment", actual.getHeaders().getContentDisposition().getType());
+    assertEquals(MediaType.APPLICATION_PDF, actual.getHeaders().getContentType());
   }
 
   @Test

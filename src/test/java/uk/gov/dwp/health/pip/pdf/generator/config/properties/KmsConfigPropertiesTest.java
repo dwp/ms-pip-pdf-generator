@@ -1,11 +1,10 @@
 package uk.gov.dwp.health.pip.pdf.generator.config.properties;
 
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.validation.Validation;
-import javax.validation.Validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

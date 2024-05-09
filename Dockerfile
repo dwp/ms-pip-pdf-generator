@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/java17@sha256:68e2373f7bef9486c08356bd9ffd3b40b56e6b9316c5f6885eb58b1d9093b43d
+FROM gcr.io/distroless/java17@sha256:009deffea52dc93a7563fd73ff55138fa02cdabe32c4defa8375ce1cee86ac4a
 COPY target/ms-pip-pdf-generator-*.jar /app.jar
 
 COPY --from=pik94420.live.dynatrace.com/linux/oneagent-codemodules:java / /
