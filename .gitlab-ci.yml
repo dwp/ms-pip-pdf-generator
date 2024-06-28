@@ -1,128 +1,24 @@
-variables:
-  # Product
-  PRODUCT: pip-apply
-  # Config
-  BUILD_TYPE: MAVEN
-  MAVEN_IMAGE: "maven:3-openjdk-17"
-  MVN_OPTS: "-DLOG_LEVEL=INFO -DtargetClasses=${PITEST_TARGET_CLASSES} -DtargetTests=${PITEST_TARGET_TEST_CLASSES} -DexcludedTestClasses=${PITEST_EXCLUDED_TEST_CLASSES}"
-  MVN_CLI_OPTS: "--batch-mode"
-  REPO_OWNER: "Team Goldcrest"
-  REPO_PATTERN: "V3 CI"
-  GITHUB_REPO_NAME: ms-pip-pdf-generator
-  PIP_APPLY_MOCKS_NAME: pip-apply-mocks
-  PIP_APPLY_MOCKS_VERSION: "develop"
-  MS_HTML_TO_PDFA_NAME: ms-html-to-pdfa
-  MS_HTML_TO_PDFA_VERSION: "develop"
-  # Duplicated config from pom to run in pipeline
-  PITEST_TARGET_CLASSES: "uk.gov.dwp.health.pip.pdf.generator.*"
-  PITEST_TARGET_TEST_CLASSES: "uk.gov.dwp.health.pip.pdf.generator.*"
-  PITEST_EXCLUDED_TEST_CLASSES: "**.*IT"
-
-stages:
-  - update-version
-  - code-quality
-  - code-test
-  - application-build
-  - code-analysis
-  - image-build
-  - container-image-test
-  - component-test
-  - image-push
-  - update-project-metadata
-  - create-schedules
-  - update-changelog
-  - release-mr-main
-  - release-tag
-  - release-update-version
-  - release-mr-develop
-  - open-source
-
-docker-build:
-  extends: .docker-build-template
-  tags:
-    - "docker-in-docker"
-  before_script:
-    - echo $DT_API_TOKEN | docker login -u pik94420 --password-stdin https://pik94420.live.dynatrace.com
-
-sast-container:
-  tags:
-    - "docker-in-docker"
-
-trivy-container:
-  tags:
-    - "docker-in-docker"
-  extends: .trivy-container-base
-  variables:
-    HIGH_SUPPRESSIONS: ""
-
-container-test-command:
-  tags:
-    - "docker-in-docker"
-
-push-to-ecr-nonprodaws:
-  tags:
-    - "docker-in-docker"
-
-push-to-ecr-prodaws:
-  tags:
-    - "docker-in-docker"
+########################################################################################
+###   Entrypoint yaml for the CI pipelines - use this to define:                     ###
+###     - pipeline includes for all config and jobs                                  ###
+########################################################################################
 
 include:
-  - local: "/gitlab-ci/includes.yml"
-
-required-fragment-check:
-  variables:
-    RULESET: MAVEN_CI
-
-.prepare-test: &prepare-test
-  before_script:
-    - apk add --no-cache py-pip jq
-    - pip install awscli
-    - eval $(aws ecr get-login --no-include-email --region eu-west-2 | sed 's|https://||')
-    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
-    - export GITLAB_IMAGE="$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:${CI_COMMIT_SHA:0:8}"
-    - export PIP_APPLY_MOCKS_IMAGE=$(aws ssm get-parameter --name "/artifact/$PRODUCT/$PIP_APPLY_MOCKS_NAME/$PIP_APPLY_MOCKS_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
-    - export MS_HTML_TO_PDFA_IMAGE=$(aws ssm get-parameter --name "/artifact/shared/$MS_HTML_TO_PDFA_NAME/$MS_HTML_TO_PDFA_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
-    - echo $DT_API_TOKEN | docker login -u pik94420 --password-stdin https://pik94420.live.dynatrace.com
-  services:
-    - name: docker:dind@sha256:a2d55c6061a342e42db62654b7b7cdf16113828a80b3827cbd9453806c08549c
-      command: [
-        "--registry-mirror=https://docker-cache.nonprod.dwpcloud.uk:5000",
-        "--insecure-registry=nexus.service.health-dev.dwpcloud.uk:5000" ]
-
-api-test:
-  extends: .docker-compose-run
-  tags:
-    - "docker-in-docker"
-  stage: component-test
-  services:
-    - name: docker:dind@sha256:a2d55c6061a342e42db62654b7b7cdf16113828a80b3827cbd9453806c08549c
-      command: [
-        "--registry-mirror=https://docker-cache.nonprod.dwpcloud.uk:5000",
-        "--insecure-registry=nexus.service.health-dev.dwpcloud.uk:5000" ]
-  variables:
-    DOCKER_COMPOSE_FILE: "docker-compose.yml"
-    DOCKER_COMPOSE_COMMAND: "--exit-code-from api-test"
-    MVN_OPTS: '-Dmaven.repo.local=~/.m2/repository'
-    MVN_M2: "~/.m2"
-  <<: *prepare-test
-  after_script:
-    - docker logout
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - ./.m2/repository/
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - test/reports/
-    when: always
-    expose_as: 'ms-pip-pdf-generator API Component Test Report'
-
-create-develop-nightly-schedule:
-  extends: .add-schedule
-  variables:
-    SCHEDULE_NAME: Nightly-Develop-CI-Build
-    SCHEDULE_BRANCH: develop
-    SCHEDULE_CRON: "0 04 * * *"
-    RANDOMIZE_MINS: "true"
+  # config
+  - local: "/gitlab-ci/config/fragments.yml"
+  - local: "/gitlab-ci/config/stages.yml"
+  - local: "/gitlab-ci/config/constants.yml"
+  - local: "/gitlab-ci/config/pipeline.yml"
+  # standards
+  - local: "/gitlab-ci/jobs/pipeline-compliance.yml"
+  - local: "/gitlab-ci/jobs/code-quality.yml"
+  # maven
+  - local: "/gitlab-ci/jobs/java-maven.yml"
+  # docker
+  - local: "/gitlab-ci/jobs/docker.yml"
+  # docs
+  - local: "/gitlab-ci/jobs/documentation.yml"
+  # schedules
+  - local: "/gitlab-ci/jobs/schedules.yml"
+  # release
+  - local: "/gitlab-ci/jobs/version.yml"

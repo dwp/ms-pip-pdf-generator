@@ -6,10 +6,10 @@ project:
   - project_id: 31923141
     component_name: ms-pip-pdf-generator
 
-    version: 2.7.0
+    version: 2.8.0
 
     last_verified:
-      date: "2024-05-07"
+      date: "2024-06-27"
       name: "@nick.preece"
 
     tags:

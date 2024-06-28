@@ -1,0 +1,131 @@
+########################################################################################
+###    Jobs specific to docker builds                                                ###
+###      - linting                                                                   ###
+###      - image build                                                               ###
+###      - image test                                                                ###
+###      - image push                                                                ###
+########################################################################################
+
+### ENVIRONMENT
+.environment: &environment
+  environment:
+    name: "$ENVIRONMENT"
+    action: prepare
+
+### TRIGGERS
+.docker-build: &docker-build
+  rules:
+    - if: $BUILD_TYPE
+
+.docker-not-merge: &docker-not-merge
+  rules:
+    - if: $BUILD_TYPE && $MERGE_TO_DEVELOP == null
+
+.docker-build-only-prod: &docker-build-only-prod
+  rules:
+    - if: $BUILD_TYPE && $PROD_AWS_ACCESS_KEY_ID && $PROD_AWS_SECRET_ACCESS_KEY && $PROD_AWS_SESSION_TOKEN
+
+.prepare-test: &prepare-test
+  before_script:
+    - apk add --no-cache py-pip jq
+    - pip install awscli
+    - eval $(aws ecr get-login --no-include-email --region eu-west-2 | sed 's|https://||')
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - export GITLAB_IMAGE="$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:${CI_COMMIT_SHA:0:8}"
+    - export PIP_APPLY_MOCKS_IMAGE=$(aws ssm get-parameter --name "/artifact/$PRODUCT/$PIP_APPLY_MOCKS_NAME/$PIP_APPLY_MOCKS_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
+    - export MS_HTML_TO_PDFA_IMAGE=$(aws ssm get-parameter --name "/artifact/shared/$MS_HTML_TO_PDFA_NAME/$MS_HTML_TO_PDFA_VERSION" --with-decryption --output json | jq --raw-output '.Parameter.Value')
+    - echo $DT_API_TOKEN | docker login -u pik94420 --password-stdin https://pik94420.live.dynatrace.com
+
+### LINT
+docker-lint:
+  extends: .docker-lint-template
+  <<: *environment
+  <<: *docker-not-merge
+  needs: []
+
+### BUILD
+docker-build:
+  extends: .docker-build-template
+  before_script:
+    - echo $DT_API_TOKEN | docker login -u pik94420 --password-stdin https://pik94420.live.dynatrace.com
+  <<: *environment
+  <<: *docker-build
+  needs: [maven-package]
+
+### COMPONENT TEST
+api-test:
+  extends: .docker-compose-run-template
+  stage: component-test
+  variables:
+    DOCKER_COMPOSE_FILE: "docker-compose.yml"
+    DOCKER_COMPOSE_COMMAND: "--exit-code-from api-test"
+    MVN_OPTS: '-Dmaven.repo.local=~/.m2/repository'
+    MVN_M2: "~/.m2"
+  <<: *prepare-test
+  after_script:
+    - docker logout
+  cache:
+    key: ${CI_PROJECT_NAME}
+    paths:
+      - ./.m2/repository/
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - test/reports/
+    when: always
+    expose_as: 'ms-pip-pdf-generator API Component Test Report'
+  <<: *environment
+  <<: *docker-build
+  needs: [maven-package, docker-build]
+
+### IMAGE TEST
+sast-container:
+  extends: .sast-container-base
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+      - scheduler_failure
+  <<: *environment
+  <<: *docker-build
+  needs: [docker-build]
+
+trivy-container:
+  extends: .trivy-container-base
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+      - scheduler_failure
+  <<: *environment
+  <<: *docker-build
+  needs: [docker-build]
+
+container-test-command:
+  extends: .container-test-template
+  <<: *environment
+  <<: *docker-build
+  needs: [docker-build]
+
+### IMAGE PUSH
+push-to-ecr-nonprodaws:
+  extends: .push-to-ecr
+  variables:
+    ACCOUNT_ID: $DEV_ACCOUNT_ID
+  <<: *environment
+  <<: *docker-build
+
+push-to-ecr-prodaws:
+  extends: .push-to-ecr
+  before_script:
+    - |
+      echo "Setting production credentials..."
+      export AWS_ACCESS_KEY_ID=$PROD_AWS_ACCESS_KEY_ID
+      export AWS_SECRET_ACCESS_KEY=$PROD_AWS_SECRET_ACCESS_KEY
+      export AWS_SESSION_TOKEN=$PROD_AWS_SESSION_TOKEN
+  variables:
+    ACCOUNT_ID: $PROD_ACCOUNT_ID
+  <<: *environment
+  <<: *docker-build-only-prod

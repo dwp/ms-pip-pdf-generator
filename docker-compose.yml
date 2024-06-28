@@ -7,9 +7,6 @@ services:
   ms-pip2-pdf-generator:
     container_name: pip2-pdf-generator
     image: ${GITLAB_IMAGE}
-    build:
-      context: .
-      dockerfile: Dockerfile
     networks:
       - ms-pip-pdf-generator
     ports:
@@ -105,7 +102,7 @@ services:
     volumes:
       - .:/usr/src
       - ${MVN_M2}:/root/.m2
-      - ${MVN_SETTINGS_FILE_SAAS}:/root/.m2/settings.xml
+      - ${MVN_SETTINGS_FILE}:/root/.m2/settings.xml
       - ./test/reports:/usr/src/target/test-reports
     networks:
       - ms-pip-pdf-generator

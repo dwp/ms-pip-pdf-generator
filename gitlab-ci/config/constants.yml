@@ -1,0 +1,20 @@
+variables:
+  # Repo
+  REPO_OWNER: "Team Goldcrest"
+  REPO_PATTERN: "V3.1 CI"
+  # Product
+  PRODUCT: pip-apply
+  # Config
+  BUILD_TYPE: MAVEN
+  MAVEN_IMAGE: "maven:3-openjdk-17"
+  MVN_OPTS: "-DLOG_LEVEL=INFO -DtargetClasses=${PITEST_TARGET_CLASSES} -DtargetTests=${PITEST_TARGET_TEST_CLASSES} -DexcludedTestClasses=${PITEST_EXCLUDED_TEST_CLASSES}"
+  MVN_CLI_OPTS: "--batch-mode"
+  GITHUB_REPO_NAME: ms-pip-pdf-generator
+  PIP_APPLY_MOCKS_NAME: pip-apply-mocks
+  PIP_APPLY_MOCKS_VERSION: "develop"
+  MS_HTML_TO_PDFA_NAME: ms-html-to-pdfa
+  MS_HTML_TO_PDFA_VERSION: "develop"
+  # Duplicated config from pom to run in pipeline
+  PITEST_TARGET_CLASSES: "uk.gov.dwp.health.pip.pdf.generator.*"
+  PITEST_TARGET_TEST_CLASSES: "uk.gov.dwp.health.pip.pdf.generator.*"
+  PITEST_EXCLUDED_TEST_CLASSES: "**.*IT"

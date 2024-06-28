@@ -19,4 +19,8 @@
     <vulnerabilityName>CVE-2023-33202</vulnerabilityName>
     <vulnerabilityName>CVE-2024-29857</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[file name: classgraph-4.8.90.jar]]></notes>
+    <cve>CVE-2021-47621</cve>
+  </suppress>
 </suppressions>
