@@ -26,8 +26,7 @@ public class GetFormSpecificationServiceImpl implements GetFormSpecificationServ
   @Override
   public AuditableFormSpecification getFormSpecificationById(String formSpecificationId) {
     try {
-      var healthCaptureManagerEndpoint =
-          config.getHealthCaptureManagerUri();
+      final String healthCaptureManagerEndpoint = config.getHealthCaptureManagerUri();
       ResponseEntity<AuditableFormSpecification> result = restTemplate.getForEntity(
           healthCaptureManagerEndpoint,
           AuditableFormSpecification.class, formSpecificationId);

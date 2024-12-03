@@ -42,17 +42,16 @@ public class SubmissionDtoToHtmlMapper {
       + "<p>${questionAnswer}</p>";
   private static final String LINE_BREAK = "<hr style='margin: 30px 0' />";
   private final QuestionTypeFactory questionTypeFactory = new QuestionTypeFactory();
-  private StringBuilder questionSectionsString;
 
   public String writeVersionedDataToTemplate(
       SubmissionDto submissionDto,
       FormSpecification formSpec, String templateHtml) throws ParseException {
 
-    questionSectionsString = new StringBuilder();
+    final StringBuilder questionSectionsString = new StringBuilder();
     Map<String, String> submissionTemplateMap = new HashMap<>(mapPersonalDetails(submissionDto));
     submissionTemplateMap.put(
         "questionSections",
-        mapSections(formSpec, submissionDto.getResponses()));
+        mapSections(formSpec, questionSectionsString, submissionDto.getResponses()));
 
     StringBuilder submissionTemplateString = new StringBuilder();
     addToString(submissionTemplateMap, templateHtml, submissionTemplateString);
@@ -95,7 +94,10 @@ public class SubmissionDtoToHtmlMapper {
     return dateOut;
   }
 
-  private String mapSections(FormSpecification formSpec, List<QuestionAnswerSectionDto> responses) {
+  private String mapSections(
+      final FormSpecification formSpec,
+      final StringBuilder questionSectionsString,
+      final List<QuestionAnswerSectionDto> responses) {
     TaskList landingViewSpec = (TaskList) formSpec.getViewSpecificationByReference("landing");
 
     if (landingViewSpec == null) {
@@ -124,9 +126,9 @@ public class SubmissionDtoToHtmlMapper {
               responses, x -> sectionReferences
                   .contains(x.getReference())).toList();
 
-          questionAnswersForSection.forEach(
-              questionAnswerSection -> mapToQuestionAnswerSection(questionAnswerSection, formSpec)
-          );
+          questionAnswersForSection.forEach(questionAnswerSection -> mapToQuestionAnswerSection(
+              questionAnswerSection, formSpec, questionSectionsString
+          ));
           // Section separating line
           questionSectionsString.append(LINE_BREAK);
         });
@@ -134,7 +136,7 @@ public class SubmissionDtoToHtmlMapper {
   }
 
   private void mapToQuestionAnswerSection(QuestionAnswerSectionDto questionAnswerSection,
-      FormSpecification formSpecification) {
+      FormSpecification formSpecification, final StringBuilder questionSectionsString) {
 
     if (questionAnswerSection.getReference().equals("about-your-health-professionals")) {
       sortHealthProfessionalsSection(questionAnswerSection, formSpecification);
@@ -147,7 +149,8 @@ public class SubmissionDtoToHtmlMapper {
           if (questionAnswer.getQuestionType().equals(QuestionType.MULTI_PART_QUESTION)) {
             handleMultiPartQuestion(
                 questionAnswer,
-                formSpecification);
+                formSpecification,
+                questionSectionsString);
           } else {
             Map<String, String> questionMap = new HashMap<>();
             Optional<String> answerWithValue = questionTypeFactory.getQuestionAnswerWithResponse(
@@ -165,7 +168,8 @@ public class SubmissionDtoToHtmlMapper {
 
   private void handleMultiPartQuestion(
       QuestionAnswerDto questionAnswer,
-      FormSpecification formSpecification) {
+      FormSpecification formSpecification,
+      final StringBuilder questionSectionsString) {
     Map<String, String> valuesMap = new HashMap<>();
 
     valuesMap.put("multiPartHeading", questionAnswer.getQuestion());
