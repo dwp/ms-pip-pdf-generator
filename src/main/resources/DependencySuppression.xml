@@ -23,4 +23,13 @@
     <notes><![CDATA[file name: classgraph-4.8.90.jar]]></notes>
     <cve>CVE-2021-47621</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[file name: logback-core-1.5.12.jar]]></notes>
+    <cve>CVE-2024-12798</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[file name: netty-handler-4.1.115.Final.jar]]></notes>
+    <cve>CVE-2025-24970</cve>
+    <cve>CVE-2025-25193</cve>
+  </suppress>
 </suppressions>

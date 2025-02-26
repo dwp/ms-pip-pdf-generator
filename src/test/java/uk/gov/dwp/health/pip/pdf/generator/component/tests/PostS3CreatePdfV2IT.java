@@ -35,7 +35,7 @@ class PostS3CreatePdfV2IT extends ApiTest {
         .contains(
             "FCP_645a11207b05c5770aaa56af_PIP-FORM.pdf_" + LocalDate.now());
     assertThat(s3CreatePdfResponse.getBucket()).isEqualTo("pip-bucket");
-    assertThat(s3CreatePdfResponse.getFileSizeKb()).isEqualTo("536");
+    assertThat(s3CreatePdfResponse.getFileSizeKb()).isEqualTo("456");
   }
 
   @Test

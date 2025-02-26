@@ -1,5 +1,7 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>dwp/secure-development/renovate-bot//shared-configs/dwp-health-configuration-override"
-  ]
+    "gitlab>dwp/engineering/renovate//shared-configs/renovate-auto-merge"
+  ],
+  "automergeType": "branch"
 }

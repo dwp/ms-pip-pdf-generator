@@ -7,7 +7,7 @@ include:
     ref: 2.4.0
     file: 'ci-include-fragment-version-check-base.yml'
   - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/required-fragment-check'
-    ref: 2.13.0
+    ref: 2.14.0
     file: 'ci-include-required-fragment-check-base.yml'
   #update-version
   - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/update-semver'
@@ -55,7 +55,7 @@ include:
     file: 'ci-include-version-check-base.yml'
     #image-build
   - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/docker-build'
-    ref: 5.0.1
+    ref: 5.1.1
     file: 'ci-include-docker-build-base.yml'
     #container-image-test
   - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/sast-container-check'
@@ -73,7 +73,7 @@ include:
     file: 'ci-include-push-to-ecr-base.yml'
     #update-project-metadata
   - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/create-project-badges'
-    ref: 2.4.0
+    ref: 2.5.0
     file: 'ci-include-create-project-badges-base.yml'
     #create-schedules
   - project: 'dwp/engineering/pipeline-solutions/gitlab/fragments/schedule-creation'
