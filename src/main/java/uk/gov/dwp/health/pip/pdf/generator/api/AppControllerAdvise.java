@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import uk.gov.dwp.health.pip.pdf.generator.exception.FormSpecificationNotFoundException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.InvalidFormDataException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfGenerationException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.TaskException;
@@ -57,12 +56,5 @@ public class AppControllerAdvise {
       })
   public final ResponseEntity<FailureResponse> handle400(Exception ex) {
     return responseWithFailureResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
-  }
-
-  @ExceptionHandler(FormSpecificationNotFoundException.class)
-  public final ResponseEntity<FailureResponse> handleFormSpecificationNotFound(
-      FormSpecificationNotFoundException ex) {
-    log.error("Form specification not found with message: {}", ex.getMessage());
-    return responseWithFailureResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
   }
 }

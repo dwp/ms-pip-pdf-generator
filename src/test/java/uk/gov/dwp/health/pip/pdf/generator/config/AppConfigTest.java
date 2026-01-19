@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.dwp.health.pip.pdf.generator.util.FileUtils;
-import uk.gov.dwp.health.pip2.common.marshaller.Pip2HealthDisabilityFormMarshaller;
 
 class AppConfigTest {
 
@@ -19,12 +18,6 @@ class AppConfigTest {
   @BeforeEach
   void setup() {
     appConfig = new AppConfig();
-  }
-
-  @Test
-  void testHtmlFormMarshaller() {
-    var actual = appConfig.htmlFormMarshaller();
-    assertThat(actual).isNotNull().isInstanceOf(Pip2HealthDisabilityFormMarshaller.class);
   }
 
   @Test

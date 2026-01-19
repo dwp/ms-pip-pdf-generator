@@ -1,0 +1,101 @@
+{
+  "claimantId": "645a11207b05c5770aaa56af",
+  "submissionDate": "2025-06-03",
+  "registrationDetails": {
+    "personalDetails": {
+      "surname": "Menon",
+      "firstName": "Karthik",
+      "nationalInsuranceNumber": "RN000004A",
+      "dateOfBirth": "1990-01-01",
+      "postcode": "LS1 7XX"
+    }
+  },
+  "formData": {
+    "aboutYourHealth": {
+      "conditions": [
+        {
+          "order": 1,
+          "condition": "Condition 1",
+          "approximateStartDate": "1 month ago",
+          "description": "This is my difficulty"
+        }
+      ],
+      "hcpDetails": [
+        {
+          "order": 1,
+          "name": "HCP1",
+          "profession": "Profession1",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "HCP Address one",
+            "line2": "HCP Street 1",
+            "townOrCity": "HCP Town",
+            "postCode": "B161AA"
+          },
+          "lastContact": "12 months ago"
+        }
+      ]
+    },
+    "dailyLiving": {
+      "preparingFood": {
+        "isAffected": "Yes",
+        "description": "\u0000I face difficulty preparing food"
+      },
+      "eatingDrinking": {
+        "isAffected": "Yes",
+        "useFeedingTube": "Yes",
+        "description": "I face difficulty eating drinking"
+      },
+      "managingTreatments": {
+        "isAffected": "Yes",
+        "description": "I have difficulty treatment",
+        "therapies": "I have difficulty attending therapy"
+      },
+      "washingBathing": {
+        "isAffected": "Yes",
+        "description": "I have difficulty washing"
+      },
+      "toiletIncontinence": {
+        "isAffected": "Yes",
+        "description": "Affecting toilet"
+      },
+      "dressingUndressing": {
+        "isAffected": "Yes",
+        "description": "I have difficulty dressing"
+      },
+      "talkingListening": {
+        "isAffected": "Yes",
+        "description": "I have difficulty talking listening and understanding"
+      },
+      "reading": {
+        "isAffected": "Yes",
+        "description": "I have difficulty reading"
+      },
+      "mixingPeople": {
+        "isAffected": "Yes",
+        "description": "I have difficulty mixing with other people"
+      },
+      "managingMoney": {
+        "isAffected": "Yes",
+        "description": "I have difficulty managing money"
+      }
+    },
+    "mobility": {
+      "planningFollowing": {
+        "isAffected": "Yes",
+        "description": "I have difficulty planning and following journey"
+      },
+      "movingAround": {
+        "isAffected": "Yes",
+        "severity": {
+          "distance": "moreThan200m"
+        },
+        "description": "asdasdsad"
+      }
+    },
+    "other": {
+      "additionalInformation": "Yes",
+      "description": "This is the additional info"
+    }
+  }
+}

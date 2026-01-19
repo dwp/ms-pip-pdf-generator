@@ -1,0 +1,28 @@
+<html>
+<th:block th:fragment="mobility">
+    <h2>Tell us about your mobility activities</h2><br/>
+    <h3>Does your condition affect you planning and following journeys?</h3>
+    <p th:text="${planningFollowingYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(planningFollowingDescription)}">
+        <h3>Tell us about difficulties you have planning and following journeys, and how you
+            manage them</h3>
+        <p th:utext="${planningFollowingDescription}"></p>
+    </th:block>
+
+
+    <h3>Does your condition affect you moving around?</h3>
+    <p th:text="${movingAroundYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(movingAroundGrade)}">
+        <h3>How far can you walk using any aids or appliances you need?</h3>
+        <p th:text="${movingAroundGrade}"></p>
+    </th:block>
+    <th:block th:if="${!#strings.isEmpty(movingAroundNotes)}">
+        <h3>Why does the distance you can walk vary?</h3>
+        <p th:utext="${movingAroundNotes}"></p>
+    </th:block>
+    <th:block th:if="${!#strings.isEmpty(movingAroundDescription)}">
+        <h3>Tell us more about difficulties you have moving around and how you manage them</h3>
+        <p th:utext="${movingAroundDescription}"></p>
+    </th:block>
+</th:block>
+</html>

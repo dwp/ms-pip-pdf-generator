@@ -1,0 +1,162 @@
+components:
+  schemas:
+
+    ChannelEnum:
+      title: ChannelEnum
+      example: Over the phone now
+      type: string
+      enum:
+        - Over the phone now
+        - Over the phone later
+        - On a paper form
+
+    YesNoEnum:
+      title: YesNoEnum
+      example: "Yes"
+      type: string
+      enum:
+        - "Yes"
+        - "No"
+
+    Property:
+      title: Property
+      type: object
+      properties:
+        key:
+          type: string
+          example: "key"
+        value:
+          type: string
+          example: "Explanation to consider"
+
+    DisagreementReasons:
+      title: DisagreementReasons
+      type: object
+      properties:
+        disagree:
+          $ref: '#/components/schemas/YesNoEnum'
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+
+    DisagreementReason:
+      title: DisagreementReason
+      properties:
+        disagree:
+          $ref: '#/components/schemas/YesNoEnum'
+        reason:
+          type: string
+          example: "Explanation for disagreement"
+
+    AdditionalDocuments:
+      title: AdditionalDocuments
+      type: object
+      properties:
+        providing_documents:
+          $ref: '#/components/schemas/YesNoEnum'
+        documents_to_consider:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+
+    AdditionalInformation:
+      title: AdditionalInformation
+      properties:
+        providing_information:
+          $ref: '#/components/schemas/YesNoEnum'
+        information_to_consider:
+          type: string
+          example: "Additional information provided to be considered for mandatory reconsideration"
+
+    DisagreementDto:
+      type: object
+      title: DisagreementDto
+      description: DTO used for disagreement details.
+      properties:
+        activities_points:
+          $ref: '#/components/schemas/DisagreementReasons'
+        dates:
+          $ref: '#/components/schemas/DisagreementReasons'
+        award_period:
+          $ref: '#/components/schemas/DisagreementReason'
+        evidence_used:
+          $ref: '#/components/schemas/DisagreementReason'
+        payment_amounts:
+          $ref: '#/components/schemas/DisagreementReason'
+
+    Source:
+      type: object
+      title: Source
+      required:
+        - channel
+        - staff_id
+      properties:
+        channel:
+          $ref: '#/components/schemas/ChannelEnum'
+        staff_id:
+          example: "staffId"
+          type: string
+
+
+    MandatoryReconsiderationBase:
+      type: object
+      title: MandatoryReconsiderationBase
+      description: Base DTO used for mandatory reconsideration.
+      required:
+        - challenged_decision_id
+        - source
+        - have_decision_letter_for_reference
+        - disagreement
+      properties:
+        challenged_decision_id:
+          example: "6ed1d430716609122be7a5f2"
+          type: string
+          pattern: ^[a-z0-9]{24}
+        late_request_reason:
+          type: string
+          example: reason for delay in raising mandatory reconsideration request
+        source:
+          $ref: '#/components/schemas/Source'
+        have_decision_letter_for_reference:
+          $ref: '#/components/schemas/YesNoEnum'
+        disagreement:
+          $ref: '#/components/schemas/DisagreementDto'
+        additional_documents:
+          $ref: '#/components/schemas/AdditionalDocuments'
+        additional_information:
+          $ref: '#/components/schemas/AdditionalInformation'
+
+    MandatoryReconsiderationCreateDto:
+      type: object
+      title: MandatoryReconsiderationCreateDto
+      description: DTO used for creating mandatory reconsideration.
+      allOf:
+        - $ref: '#/components/schemas/MandatoryReconsiderationBase'
+
+    MandatoryReconsiderationDetails:
+      type: object
+      title: MandatoryReconsiderationDetails
+      required:
+        - id
+        - challenged_decision_id
+        - source
+        - have_decision_letter_for_reference
+        - disagreement
+        - created_date
+        - updated_date
+      allOf:
+        - $ref: '#/components/schemas/MandatoryReconsiderationBase'
+      properties:
+        id:
+          example: "5ed1d430716609122be7a5d5"
+          type: string
+          pattern: ^[a-z0-9]{24}
+        created_date:
+          example: "2025-06-24T17:35:45Z"
+          type: string
+          format: date-time
+        updated_date:
+          example: "2025-06-24T17:35:45Z"
+          type: string
+          format: date-time

@@ -1,0 +1,62 @@
+openapi: '3.1.0'
+
+info:
+  title: DWP PIP Mandatory Reconsideration Service
+  description: Version 1 Rest API for operations relating to the mandatory reconsideration
+  version: '1.0'
+
+servers:
+  - url: 'https://localhost:8080'
+
+paths:
+
+  /v1/mandatory-reconsiderations:
+    post:
+      tags:
+        - mandatory reconsideration
+      summary: Creates mandatory reconsideration
+      operationId: createMandatoryReconsideration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'includes/mandatory-reconsideration-components-v1.yaml#/components/schemas/MandatoryReconsiderationCreateDto'
+      responses:
+        201:
+          description: CREATED - mandatory reconsideration created
+        400:
+          description: BAD REQUEST - badly formed json or values not valid
+        404:
+          description: NOT FOUND - decision does not exist for provided decision id
+        500:
+          description: INTERNAL SERVER ERROR - an internal error occurred
+
+    get:
+      tags:
+        - mandatory reconsideration
+      summary: Get mandatory reconsiderations by decision id
+      operationId: getMandatoryReconsiderationsByDecisionId
+      parameters:
+        - name: decisionId
+          in: query
+          description: decision id for the mandatory reconsiderations
+          required: false
+          schema:
+            type: string
+            example: "6ed1d430716609122be7a5f2"
+      responses:
+        200:
+          description: OK - mandatory reconsiderations exist for decision id
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'includes/mandatory-reconsideration-components-v1.yaml#/components/schemas/MandatoryReconsiderationDetails'
+        400:
+          description: BAD REQUEST - badly formed request
+        404:
+          description: NOT FOUND - mandatory reconsiderations does not exist for provided decision id
+        500:
+          description: INTERNAL SERVER ERROR - an internal error occurred

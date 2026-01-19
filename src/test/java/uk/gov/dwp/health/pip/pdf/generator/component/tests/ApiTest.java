@@ -13,6 +13,8 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import uk.gov.dwp.health.pip.pdf.generator.component.utils.S3Util;
 
 
+import java.net.URISyntaxException;
+
 import static io.restassured.RestAssured.given;
 import static uk.gov.dwp.health.pip.pdf.generator.component.utils.EnvironmentUtil.getEnv;
 
@@ -24,7 +26,7 @@ public class ApiTest {
   protected static S3Util s3Util;
 
   @BeforeAll
-  static void beforeAll() {
+  static void beforeAll() throws URISyntaxException {
     RestAssured.baseURI = getEnv("MS_PIP_PDF_GENERATOR_BASE_URI", "http://localhost:8080");
     RestAssured.port = Integer.parseInt(getEnv("PORT", "9945"));
     RestAssured.defaultParser = Parser.JSON;

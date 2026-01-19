@@ -1,0 +1,109 @@
+{
+  "claimantId": "645a11207b05c5770aaa56af",
+  "submissionDate": "2025-06-03",
+  "registrationDetails": {
+    "personalDetails": {
+      "surname": "Menon",
+      "firstName": "Karthik",
+      "nationalInsuranceNumber": "RN000002A",
+      "dateOfBirth": "1990-01-01",
+      "postcode": "B14 1AA"
+    }
+  },
+  "formData": {
+    "aboutYourHealth": {
+      "conditions": [
+        {
+          "order": 1,
+          "condition": "Condition 1",
+          "approximateStartDate": "1 month ago",
+          "description": "This is my condition"
+        }
+      ],
+      "hcpDetails": [
+        {
+          "order": 1,
+          "name": "HCP1",
+          "profession": "Profession1",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "Building 1",
+            "line2": "Street 1",
+            "townOrCity": "Town",
+            "postCode": "B141AA"
+          },
+          "lastContact": "12 months ago"
+        },
+        {
+          "order": 2,
+          "name": "Health 2 mix",
+          "profession": "profession 2",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "HCP Address one",
+            "line2": "asd",
+            "townOrCity": "HCP Town",
+            "postCode": "B161AA"
+          },
+          "lastContact": "1 month ago"
+        },
+        {
+          "order": 3,
+          "name": "Health 3 mix",
+          "profession": "Profession 3",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "Building 1",
+            "line2": "Streeet 1 mix",
+            "townOrCity": "Town mix",
+            "postCode": "B161AA"
+          },
+          "lastContact": "12 months ago"
+        }
+      ]
+    },
+    "dailyLiving": {
+      "preparingFood": {
+        "isAffected": "No"
+      },
+      "eatingDrinking": {
+        "isAffected": "No"
+      },
+      "managingTreatments": {
+        "isAffected": "No"
+      },
+      "washingBathing": {
+        "isAffected": "No"
+      },
+      "toiletIncontinence": {
+        "isAffected": "No"
+      },
+      "dressingUndressing": {
+        "isAffected": "No"
+      },
+      "talkingListening": {
+        "isAffected": "No"
+      },
+      "reading": {
+        "isAffected": "No"
+      },
+      "mixingPeople": {
+        "isAffected": "No"
+      },
+      "managingMoney": {
+        "isAffected": "No"
+      }
+    },
+    "mobility": {
+      "planningFollowing": {
+        "isAffected": "No"
+      },
+      "movingAround": {
+        "isAffected": "No"
+      }
+    },
+    "other": {
+      "additionalInformation": "No"
+    }
+  }
+}

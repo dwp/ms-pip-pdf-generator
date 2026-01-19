@@ -1,0 +1,68 @@
+{
+  "claimantId": "645a11207b05c5770aaa56af",
+  "submissionDate": "2025-06-03",
+  "registrationDetails": {
+    "personalDetails": {
+      "surname": "Menon",
+      "firstName": "Karthik",
+      "nationalInsuranceNumber": "RN000005 A",
+      "dateOfBirth": "1990-01-01",
+      "postcode": "LS1 7XX"
+    }
+  },
+  "formData": {
+    "aboutYourHealth": {
+      "conditions": [
+        {
+          "order": 1,
+          "condition": "Condition 1",
+          "approximateStartDate": "1 month ago",
+          "description": "This is the condition"
+        }
+      ]
+    },
+    "dailyLiving": {
+      "preparingFood": {
+        "isAffected": "No"
+      },
+      "eatingDrinking": {
+        "isAffected": "No"
+      },
+      "managingTreatments": {
+        "isAffected": "No"
+      },
+      "washingBathing": {
+        "isAffected": "No"
+      },
+      "toiletIncontinence": {
+        "isAffected": "No"
+      },
+      "dressingUndressing": {
+        "isAffected": "No"
+      },
+      "talkingListening": {
+        "isAffected": "No"
+      },
+      "reading": {
+        "isAffected": "No"
+      },
+      "mixingPeople": {
+        "isAffected": "No"
+      },
+      "managingMoney": {
+        "isAffected": "No"
+      }
+    },
+    "mobility": {
+      "planningFollowing": {
+        "isAffected": "No"
+      },
+      "movingAround": {
+        "isAffected": "No"
+      }
+    },
+    "other": {
+      "additionalInformation": "No"
+    }
+  }
+}

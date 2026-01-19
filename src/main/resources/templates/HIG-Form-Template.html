@@ -1,0 +1,42 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'arial', serif;
+        }
+    </style>
+</head>
+<body>
+<h1>Tell us how your health condition or disability affects you (PIP 2)</h1>
+<br/><br/>
+<h2>First Name</h2>
+<th:block th:utext="${firstName}"></th:block>
+<br/>
+<h2>Last Name</h2>
+<th:block th:utext="${lastName}"></th:block>
+<br/>
+<h2>National Insurance number</h2>
+<th:block th:text="${nino}"></th:block>
+<br/>
+<h2>Date of birth</h2>
+<th:block th:text="${dateOfBirth}"></th:block>
+<hr style='margin: 30px 0'/>
+<h2>Tell us about your health</h2><br/>
+<section th:replace="~{HIG-CONDITIONS :: higConditions}"></section>
+<section th:replace="~{HIG-HCP :: hcpDetails}"></section>
+<hr style='margin: 30px 0'/>
+<section th:replace="~{HIG-DAILY-LIVING :: dailyLiving}"></section>
+<hr style='margin: 30px 0'/>
+<section th:replace="~{HIG-MOBILITY :: mobility}"></section>
+<hr style='margin: 30px 0'/>
+<section th:replace="~{HIG-ADDITIONAL :: additional}"></section>
+<hr style='margin: 30px 0'/>
+<h2>Declaration:</h2>
+<br/>
+Agreed
+<br/>
+<h3>End of questionnaire</h3>
+<br/>
+<h3 th:inline="text">Submitted: [[${submissionDate}]]</h3>
+</body>
+</html>

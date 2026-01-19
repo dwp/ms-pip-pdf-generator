@@ -1,10 +1,10 @@
 package uk.gov.dwp.health.pip.pdf.generator.config;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.kms.model.DataKeySpec;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.kms.model.DataKeySpec;
 import uk.gov.dwp.health.crypto.CryptoConfig;
 import uk.gov.dwp.health.crypto.CryptoDataManager;
 import uk.gov.dwp.health.pip.pdf.generator.config.properties.KmsConfigProperties;
@@ -56,7 +56,7 @@ class KmsConfigTest {
       when(props.getKmsOverride()).thenReturn("http://localhost");
       CryptoConfig actual = cut.cryptoConfig(props);
       assertNotNull(actual);
-      assertEquals(Regions.EU_WEST_2, actual.getRegion());
+      assertEquals(Region.EU_WEST_2, actual.getRegion());
       assertEquals("http://localhost", actual.getKmsEndpointOverride());
     }
 
@@ -66,7 +66,7 @@ class KmsConfigTest {
       when(props.getKmsOverride()).thenReturn("");
       CryptoConfig actual = cut.cryptoConfig(props);
       assertNotNull(actual);
-      assertEquals(Regions.EU_WEST_2, actual.getRegion());
+      assertEquals(Region.EU_WEST_2, actual.getRegion());
       assertNull(actual.getKmsEndpointOverride());
     }
   }
@@ -86,7 +86,7 @@ class KmsConfigTest {
       CryptoConfig config = mock(CryptoConfig.class);
       when(config.isContentValid()).thenReturn(true);
       when(config.getEncryptionType()).thenReturn(DataKeySpec.AES_256.name());
-      when(config.getRegion()).thenReturn(Regions.EU_WEST_2);
+      when(config.getRegion()).thenReturn(Region.EU_WEST_2);
       CryptoDataManager actual = cut.cryptoDataManager(config);
       assertNotNull(actual);
     }

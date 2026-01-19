@@ -1,0 +1,37 @@
+<html>
+<th:block th:fragment="hcpDetails">
+    <h3>Are
+        there any health or care professionals that you would like to tell us about?</h3>
+    <th:block th:unless="${#lists.isEmpty(healthProfessionalDetails)}">
+        <p>Yes</p>
+        <th:block th:each="hcp, iterStat : ${healthProfessionalDetails}">
+            <h2>Health or care professional details</h2>
+            <h3>Their name</h3>
+            <p th:utext="${hcp.name}"></p>
+            <h3>Profession</h3>
+            <p th:utext="${hcp.profession}"></p>
+            <h3>Phone number, including dialling code</h3>
+            <p th:utext="${hcp.phoneNumber}"></p>
+            <h3>Building and street</h3>
+            <p th:utext="${hcp.address.line1}"></p>
+            <p th:utext="${hcp.address.line2}"></p>
+            <h3>Town or city</h3>
+            <p th:utext="${hcp.address.townOrCity}"></p>
+            <th:block th:if="${!#strings.isEmpty(hcp.address.county)}">
+                <h3>County</h3>
+                <p th:utext="${hcp.address.county}"></p>
+            </th:block>
+            <h3>Postcode</h3>
+            <p th:utext="${hcp.address.postCode}"></p>
+            <h3>When did you last speak to them?</h3>
+            <p th:utext="${hcp.lastContact}"></p>
+            <th:block th:if="${iterStat.last}">
+                <h3>Are there any other health or care professionals that you would like to tell us
+                    about?</h3>
+                <p>No</p>
+            </th:block>
+        </th:block>
+    </th:block>
+    <p th:if="${#lists.isEmpty(healthProfessionalDetails)}">No</p>
+</th:block>
+</html>

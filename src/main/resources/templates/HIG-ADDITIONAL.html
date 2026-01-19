@@ -1,0 +1,11 @@
+<html>
+<th:block th:fragment="additional">
+    <h2>Tell us about anything else</h2><br/>
+    <h3>Is there anything else you would like to tell us about?</h3>
+    <p th:text="${otherInfoYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(otherInfoDescription)}">
+        <h3>Additional information</h3>
+        <p th:utext="${otherInfoDescription}"></p>
+    </th:block>
+</th:block>
+</html>

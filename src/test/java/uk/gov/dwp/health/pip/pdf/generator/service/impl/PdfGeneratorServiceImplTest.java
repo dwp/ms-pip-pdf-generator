@@ -3,22 +3,15 @@ package uk.gov.dwp.health.pip.pdf.generator.service.impl;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
-import static uk.gov.dwp.health.pip.pdf.generator.util.GetFormSpecificationUtil.getTestFormSpecAsFormSpec;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Map;
-import java.util.regex.Pattern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,113 +25,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfClientException;
 import uk.gov.dwp.health.pip.pdf.generator.exception.PdfGenerationException;
-import uk.gov.dwp.health.pip.pdf.generator.mappers.SubmissionDtoToHtmlMapper;
-import uk.gov.dwp.health.pip.pdf.generator.model.AuditableFormSpecification;
-import uk.gov.dwp.health.pip.pdf.generator.openapi.model.SubmissionDto;
-import uk.gov.dwp.health.pip.pdf.generator.service.GetFormSpecificationService;
-import uk.gov.dwp.health.pip.pdf.generator.util.JsonTransformation;
-import uk.gov.dwp.health.pip2.common.Pip2HealthDisabilityForm;
-import uk.gov.dwp.health.pip2.common.marshaller.Pip2HealthDisabilityFormMarshaller;
+import uk.gov.dwp.health.pip.pdf.generator.mappers.SubmissionDtoToHtmlMapperV2;
+import uk.gov.dwp.health.pip.pdf.generator.openapi.model.SubmissionDtoV3;
 
 @ExtendWith(MockitoExtension.class)
 class PdfGeneratorServiceImplTest {
-
-  private static final String claimId = "test id";
-  private static final String formData = "FORM_DATA";
-
-
-  private final Pattern htmlPattern = Pattern.compile(".*[^>]+>.*", Pattern.DOTALL);
-  @Captor
-  ArgumentCaptor<String> strCaptor;
+  @Captor ArgumentCaptor<String> strCaptor;
   ResponseEntity<String> pdfResponse;
-  @InjectMocks
-  private PdfGeneratorServiceImpl underTest;
-  @Mock
-  private JsonTransformation jsonTransformation;
-  @Mock
-  private SubmissionDtoToHtmlMapper submissionDtoToHtmlMapper;
-  @Mock
-  private PdfClientServiceImpl pdfClientService;
-  @Mock
-  private Pip2HealthDisabilityFormMarshaller pipHealthDisabilityDataMarshaller;
-  private Pip2HealthDisabilityForm mockForm;
-  private AuditableFormSpecification exampleFormSpec;
-  private SubmissionDto testDto;
-  @Mock
-  private GetFormSpecificationService getFormSpecificationService;
+  @InjectMocks private PdfGeneratorServiceImpl underTest;
+  @Mock private SubmissionDtoToHtmlMapperV2 submissionDtoToHtmlMapperV2;
+  @Mock private PdfClientServiceImpl pdfClientService;
 
   @BeforeEach
   void setup() {
-    mockForm = mock(Pip2HealthDisabilityForm.class);
-    testDto = new SubmissionDto();
-    testDto.setClaimantId("123456789");
-    testDto.setFormSpecificationId("123456789");
     pdfResponse = createTestPdf();
-  }
-
-  @Test
-  void testHandlePdfGenerationThrowsJsonProcessingException() throws JsonProcessingException {
-    when(pipHealthDisabilityDataMarshaller.toHealthDisabilityForm(anyString()))
-        .thenThrow(JsonProcessingException.class);
-    assertThrows(
-        PdfGenerationException.class, () -> underTest.handlePdfGeneration(claimId, formData));
-    verifyNoInteractions(jsonTransformation);
-    verifyNoInteractions(pdfClientService);
-  }
-
-  @Test
-  void testHandlePdfGenerationThrowsInvalidFormDataException() throws IOException {
-    when(mockForm.validate()).thenReturn(false);
-    when(pipHealthDisabilityDataMarshaller.toHealthDisabilityForm(anyString()))
-        .thenReturn(mockForm);
-    assertThrows(
-        PdfGenerationException.class, () -> underTest.handlePdfGeneration(claimId, formData));
-    verifyNoInteractions(jsonTransformation);
-    verifyNoInteractions(pdfClientService);
-  }
-
-  @Test
-  void testHandlePdfGenerationThrowsIOException() throws IOException {
-    when(mockForm.validate()).thenReturn(true);
-    when(pipHealthDisabilityDataMarshaller.toHealthDisabilityForm(anyString()))
-        .thenReturn(mockForm);
-    when(jsonTransformation.transformPipForm(any(Pip2HealthDisabilityForm.class)))
-        .thenThrow(IOException.class);
-    assertThrows(
-        PdfGenerationException.class, () -> underTest.handlePdfGeneration(claimId, formData));
-    verifyNoInteractions(pdfClientService);
-  }
-
-  @Test
-  void testHandlePdfGenerationThrowsPdfConverterException() throws IOException {
-    when(mockForm.validate()).thenReturn(true);
-    when(pipHealthDisabilityDataMarshaller.toHealthDisabilityForm(anyString()))
-        .thenReturn(mockForm);
-    when(jsonTransformation.transformPipForm(mockForm)).thenReturn(Map.of("firstName", "SMITH"));
-    when(pdfClientService.postCreateRequest(anyString())).thenThrow(PdfClientException.class);
-    assertThrows(
-        PdfGenerationException.class, () -> underTest.handlePdfGeneration(claimId, formData));
-    verify(pdfClientService).postCreateRequest(strCaptor.capture());
-    assertThat(strCaptor.getValue()).contains("SMITH");
-  }
-
-  @Test
-  void testHandlePdfGenerationSuccess() throws IOException {
-    String pdf = "testPDFData";
-    HttpHeaders header = new HttpHeaders();
-    ResponseEntity<String> pdfResponse = new ResponseEntity<>(pdf, header, HttpStatus.OK);
-
-    when(mockForm.validate()).thenReturn(true);
-    when(pipHealthDisabilityDataMarshaller.toHealthDisabilityForm(anyString()))
-        .thenReturn(mockForm);
-    when(jsonTransformation.transformPipForm(mockForm)).thenReturn(Map.of("firstName", "SMITH"));
-    when(pdfClientService.postCreateRequest(anyString())).thenReturn(pdfResponse);
-
-    String pdfData = underTest.handlePdfGeneration(claimId, formData);
-    verify(pdfClientService).postCreateRequest(strCaptor.capture());
-    assertEquals("testPDFData", pdfData);
-    assertThat(strCaptor.getValue()).contains("SMITH");
-    assertTrue(htmlPattern.matcher(strCaptor.getValue()).matches());
   }
 
   private ResponseEntity<String> createTestPdf() {
@@ -147,14 +47,14 @@ class PdfGeneratorServiceImplTest {
   }
 
   @Test
-  void and_valid_dto_return_pdf_response_as_string() throws IOException, ParseException {
-    exampleFormSpec = getTestFormSpecAsFormSpec();
-    when(getFormSpecificationService.getFormSpecificationById(any())).thenReturn(exampleFormSpec);
-    when(submissionDtoToHtmlMapper.writeVersionedDataToTemplate(any(), any(), any())).thenReturn(
-        "testPdfData");
+  void test_v3_pdf_generator_service_called_with_html_string() throws IOException, ParseException {
+    when(submissionDtoToHtmlMapperV2.writeDataToTemplate(any(), any())).thenReturn("testPdfData");
     when(pdfClientService.postCreateRequest(anyString())).thenReturn(pdfResponse);
+    SubmissionDtoV3 submissionDtoV3 = new SubmissionDtoV3();
+    submissionDtoV3.setClaimantId("222123");
 
-    String pdfData = underTest.handleVersionedPdfGeneration(testDto);
+    String pdfData = underTest.handleV3PdfGeneration(submissionDtoV3);
+
     verify(pdfClientService, times(1)).postCreateRequest(any());
     verify(pdfClientService).postCreateRequest(strCaptor.capture());
     assertThat(strCaptor.getValue()).contains("testPdfData");
@@ -162,20 +62,26 @@ class PdfGeneratorServiceImplTest {
   }
 
   @Test
-  void testHandleVersionedPdfGenerationThrowsPdfConverterException() throws IOException, ParseException {
-    exampleFormSpec = getTestFormSpecAsFormSpec();
-    when(getFormSpecificationService.getFormSpecificationById(any())).thenReturn(exampleFormSpec);
-    when(submissionDtoToHtmlMapper.writeVersionedDataToTemplate(any(), any(), any())).thenReturn(
-        "testPdfData");
-    when(pdfClientService.postCreateRequest(anyString())).thenThrow(PdfClientException.class);
+  void test_v3_pdf_generator_service_throws_pdf_converter_exception()
+      throws ParseException, JsonProcessingException {
+    String exceptionMessage = "Unable to connect";
+    when(submissionDtoToHtmlMapperV2.writeDataToTemplate(any(), any())).thenReturn("testPdfData");
+    when(pdfClientService.postCreateRequest("testPdfData"))
+        .thenThrow(new PdfClientException(exceptionMessage));
+    SubmissionDtoV3 submissionDtoV3 = new SubmissionDtoV3();
+    submissionDtoV3.setClaimantId("222123");
+    submissionDtoV3.setApplicationId("application_id");
 
-    assertThatThrownBy(() -> underTest
-        .handleVersionedPdfGeneration(testDto))
+    assertThatThrownBy(() -> underTest.handleV3PdfGeneration(submissionDtoV3))
         .isInstanceOf(PdfGenerationException.class)
         .hasMessageContaining(
             String.format(
-                "Pdf generation failed for claim [%s] - %s", testDto.getClaimantId(), null));
+                "V3 Pdf generation failed for claimant [%s] with application id %s - %s",
+                submissionDtoV3.getClaimantId(),
+                submissionDtoV3.getApplicationId(),
+                exceptionMessage));
 
+    verify(pdfClientService, times(1)).postCreateRequest(any());
     verify(pdfClientService).postCreateRequest(strCaptor.capture());
     assertThat(strCaptor.getValue()).contains("testPdfData");
   }

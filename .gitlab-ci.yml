@@ -22,3 +22,6 @@ include:
   - local: "/gitlab-ci/jobs/schedules.yml"
   # release
   - local: "/gitlab-ci/jobs/version.yml"
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive

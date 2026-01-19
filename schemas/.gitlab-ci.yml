@@ -1,0 +1,11 @@
+stages:
+  - validate
+
+validate-schemas:
+  stage: validate
+  tags:
+    - docker
+  image: node:18-alpine3.14@sha256:a648bbe9a0af3991ef1bf02208b2e9b04b4bad49790efc5740a43d13cd1482b5
+  script:
+    - npm --prefix utilities install
+    - npm --prefix utilities run validate

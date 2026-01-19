@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
-  <suppress>
-    <notes><![CDATA[
-   file name: jackson-databind-2.13.2.2.jar
-   ]]></notes>
-    <cve>CVE-2023-35116</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
+    <suppress>
+        <notes><![CDATA[
    file name: guava-14.0.1.jar
    ]]></notes>
-    <cve>CVE-2023-2976</cve>
-    <cve>CVE-2020-8908</cve>
-    <cve>CVE-2018-10237</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[file name: bc-fips-1.0.2.4.jar]]></notes>
-    <vulnerabilityName>CVE-2023-33202</vulnerabilityName>
-    <vulnerabilityName>CVE-2024-29857</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[file name: classgraph-4.8.90.jar]]></notes>
-    <cve>CVE-2021-47621</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[file name: logback-core-1.5.12.jar]]></notes>
-    <cve>CVE-2024-12798</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[file name: netty-handler-4.1.115.Final.jar]]></notes>
-    <cve>CVE-2025-24970</cve>
-    <cve>CVE-2025-25193</cve>
-  </suppress>
+        <cve>CVE-2023-2976</cve>
+        <cve>CVE-2020-8908</cve>
+        <cve>CVE-2018-10237</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[file name: classgraph-4.8.90.jar]]></notes>
+        <cve>CVE-2021-47621</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            <![CDATA[file name:
+      tomcat-embed-core-*.jar
+      ]]>
+        </notes>
+        <cve>CVE-2025-49125</cve>
+        <cve>CVE-2025-48988</cve>
+        <cve>CVE-2025-52520</cve>
+        <cve>CVE-2025-53506</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: aws-java-sdk-s3-1.11.792.jar
+   ]]></notes>
+        <cve>CVE-2022-31159</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: netty-transport-4.1.124.Final.jar
+   ]]></notes>
+        <cve>CVE-2025-58056</cve>
+        <cve>CVE-2025-58057</cve>
+    </suppress>
+    <suppress until="2025-09-27Z">
+        <notes><![CDATA[
+   file name: spring-core-6.2.10.jar
+   ]]></notes>
+        <cve>CVE-2025-41249</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: log4j-api-2.24.3.jar
+   ]]></notes>
+        <cve>CVE-2025-68161</cve>
+    </suppress>
 </suppressions>

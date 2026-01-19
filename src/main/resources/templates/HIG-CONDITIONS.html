@@ -1,0 +1,17 @@
+<html>
+<th:block th:fragment="higConditions">
+    <th:block th:each="condition, iterStat : ${conditions}">
+        <h2>What health condition or disability do you have?</h2>
+        <h3>Name of condition or disability</h3>
+        <p th:utext="${condition.healthCondition}"></p>
+        <h3>Approximate start date</h3>
+        <p th:utext="${condition.approximateStartDate}"></p>
+        <h3>About this condition or disability</h3>
+        <p th:utext="${condition.description}"></p>
+        <th:block th:if="${iterStat.last}">
+            <h3>Do you have another condition or disability?</h3>
+            <p>No</p>
+        </th:block>
+    </th:block>
+</th:block>
+</html>

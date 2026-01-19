@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ErrorDetails:
+      type: object
+      properties:
+        message:
+          description: detail description of fail/success
+          type: string
+

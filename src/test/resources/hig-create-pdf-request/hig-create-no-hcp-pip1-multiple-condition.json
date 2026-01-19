@@ -1,0 +1,96 @@
+{
+  "claimantId": "645a11207b05c5770aaa56af",
+  "submissionDate": "2025-06-03",
+  "registrationDetails": {
+    "personalDetails": {
+      "surname": "Menon",
+      "firstName": "Karthik",
+      "nationalInsuranceNumber": "RN000003A",
+      "dateOfBirth": "1990-02-01",
+      "postcode": "B14 1AA"
+    }
+  },
+  "formData": {
+    "aboutYourHealth": {
+      "conditions": [
+        {
+          "order": 1,
+          "condition": "Condition 1",
+          "approximateStartDate": "12 months",
+          "description": "Condition 1"
+        }
+      ],
+      "hcpDetails": [
+        {
+          "order": 1,
+          "name": "HCp1",
+          "profession": "Profession 1",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "HCP Address one",
+            "line2": "asdasd",
+            "townOrCity": "HCP Town",
+            "postCode": "B141AA"
+          },
+          "lastContact": "10 months ago"
+        },
+        {
+          "order": 2,
+          "name": "HCP 2",
+          "profession": "Profession 2",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "HCP Address one",
+            "line2": "asdasd",
+            "townOrCity": "asdasd",
+            "postCode": "B161AA"
+          },
+          "lastContact": "12 months ago"
+        }
+      ]
+    },
+    "dailyLiving": {
+      "preparingFood": {
+        "isAffected": "No"
+      },
+      "eatingDrinking": {
+        "isAffected": "No"
+      },
+      "managingTreatments": {
+        "isAffected": "No"
+      },
+      "washingBathing": {
+        "isAffected": "No"
+      },
+      "toiletIncontinence": {
+        "isAffected": "No"
+      },
+      "dressingUndressing": {
+        "isAffected": "No"
+      },
+      "talkingListening": {
+        "isAffected": "No"
+      },
+      "reading": {
+        "isAffected": "No"
+      },
+      "mixingPeople": {
+        "isAffected": "No"
+      },
+      "managingMoney": {
+        "isAffected": "No"
+      }
+    },
+    "mobility": {
+      "planningFollowing": {
+        "isAffected": "No"
+      },
+      "movingAround": {
+        "isAffected": "No"
+      }
+    },
+    "other": {
+      "additionalInformation": "No"
+    }
+  }
+}

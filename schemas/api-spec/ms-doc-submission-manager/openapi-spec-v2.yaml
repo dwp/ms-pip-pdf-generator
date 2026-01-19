@@ -1,0 +1,46 @@
+openapi: 3.1.0
+
+info:
+  title: Document Submission Service - PIP-Apply
+  description: Rest API for managing document submissions to DRS
+  version: '@project.version@'
+
+servers:
+  - url: 'https://localhost:9980'
+
+paths:
+  /v2/apply:
+    post:
+      tags:
+        - submission
+      summary: POST call to send first batch of evidence to DRS
+      description: Endpoint to complete and send evidence to DRS - the response has been set to type object due to the nested objects within the response (HealthCaptureApplicationDto), This response can be parsed to a HealthCaptureApplicationDto anywhere it is consumed.
+      operationId: applyPIP
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        202:
+          description: submission accepted
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: BAD REQUEST - badly formed json or invalid PIP form data
+          content:
+            application/json:
+              schema:
+                $ref: 'includes/components.yaml#/components/schemas/ErrorDetails'
+        409:
+          description: CONFLICT - application already exist
+        500:
+          description: INTERNAL SERVER ERROR - request failed due to an error, detail provided
+          content:
+            application/json:
+              schema:
+                $ref: 'includes/components.yaml#/components/schemas/ErrorDetails'

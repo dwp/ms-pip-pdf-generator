@@ -1,0 +1,115 @@
+{
+  "bucket": "pip-bucket",
+  "submissionDto": {
+    "claimantId": "645a11207b05c5770aaa56af",
+    "submissionDate": "2020-11-13",
+    "registrationDetails": {
+      "personalDetails": {
+        "surname": "claimant_last_name",
+        "firstName": "claimant_first_name",
+        "nationalInsuranceNumber": "RN000064C",
+        "dateOfBirth": "1970-8-08",
+        "postcode": "LS1 7XX"
+      }
+    },
+    "formData": {
+      "aboutYourHealth": {
+        "conditions": [
+          {
+            "order": 1,
+            "condition": "C1",
+            "approximateStartDate": "12 months ago",
+            "description": "This is the details about C1"
+          },
+          {
+            "order": 2,
+            "condition": "C2",
+            "approximateStartDate": "12 months ago",
+            "description": "This is the details about C2"
+          }
+        ],
+        "hcpDetails": [
+          {
+            "order": 1,
+            "name": "Jim",
+            "profession": "GP",
+            "phoneNumber": "07808555876",
+            "address": {
+              "line1": "123",
+              "line2": "Testing Street",
+              "townOrCity": "Newcastle",
+              "postCode": "NE6 5DX"
+            },
+            "lastContact": "October 2019"
+          },
+          {
+            "order": 2,
+            "name": "Jim",
+            "profession": "GP",
+            "phoneNumber": "07808555876",
+            "address": {
+              "line1": "123",
+              "line2": "Testing Street",
+              "townOrCity": "Newcastle",
+              "postCode": "NE6 5DX"
+            },
+            "lastContact": "October 2019"
+          }
+        ]
+      },
+      "dailyLiving": {
+        "preparingFood": {
+          "isAffected": "Yes",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Eget velit aliquet sagittis id consectetur purus ut faucibus."
+        },
+        "eatingDrinking": {
+          "isAffected": "Yes",
+          "useFeedingTube": "Yes",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Eget velit aliquet sagittis id consectetur purus ut faucibus."
+        },
+        "managingTreatments": {
+          "isAffected": "No"
+        },
+        "washingBathing": {
+          "isAffected": "No"
+        },
+        "toiletIncontinence": {
+          "isAffected": "Yes",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Eget velit aliquet sagittis id consectetur purus ut faucibus."
+        },
+        "dressingUndressing": {
+          "isAffected": "No"
+        },
+        "talkingListening": {
+          "isAffected": "No"
+        },
+        "reading": {
+          "isAffected": "No"
+        },
+        "mixingPeople": {
+          "isAffected": "No"
+        },
+        "managingMoney": {
+          "isAffected": "No"
+        }
+      },
+      "mobility": {
+        "planningFollowing": {
+          "isAffected": "No"
+        },
+        "movingAround": {
+          "isAffected": "Yes",
+          "severity": {
+            "distance": "varies",
+            "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Eget velit aliquet sagittis id consectetur purus ut faucibus."
+          },
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Eget velit aliquet sagittis id consectetur purus ut faucibus."
+        }
+      },
+      "other": {
+        "additionalInformation": "Yes",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Eget velit aliquet sagittis id consectetur purus ut faucibus."
+      }
+    }
+  }
+}

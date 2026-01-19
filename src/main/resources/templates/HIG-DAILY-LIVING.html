@@ -1,0 +1,92 @@
+<html>
+<th:block th:fragment="dailyLiving">
+    <h2>Tell us about your daily living activities</h2><br/>
+    <h3>Does your condition affect you preparing food, or prevent you from doing so?</h3>
+    <p th:text="${preparingFoodYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(preparingFoodDescription)}">
+        <h3>Tell us about difficulties you have preparing food and how you manage them</h3>
+        <p th:utext="${preparingFoodDescription}"></p>
+    </th:block>
+
+    <h3>Does your condition affect you eating and drinking?</h3>
+    <p th:text="${eatingYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(useFeedingTube)}">
+        <h3>Do you use a feeding tube or similar device to eat or drink?</h3>
+        <p th:text="${useFeedingTube}"></p>
+    </th:block>
+    <th:block th:if="${!#strings.isEmpty(eatingDescription)}">
+        <h3>Tell us about difficulties you have eating and drinking and how you manage them</h3>
+        <p th:utext="${eatingDescription}"></p>
+    </th:block>
+
+    <h3>Does your condition affect you managing your treatments?</h3>
+    <p th:text="${managingTreatmentsYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(managingTreatmentsDescription)}">
+        <h3>Tell us about difficulties you have monitoring changes in your health and taking
+            medication, and how you manage them</h3>
+        <p th:utext="${managingTreatmentsDescription}"></p>
+    </th:block>
+    <th:block th:if="${!#strings.isEmpty(managingTreatmentsTherapies)}">
+        <h3>Tell us about therapies you take at home with help from another person</h3>
+        <p th:utext="${managingTreatmentsTherapies}"></p>
+    </th:block>
+
+    <h3>Does your condition affect you washing and bathing?</h3>
+    <p th:text="${washingBathingYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(washingBathingDescription)}">
+        <h3>Tell us about difficulties you have washing and bathing, and how you manage
+            them</h3>
+        <p th:utext="${washingBathingDescription}"></p>
+    </th:block>
+
+
+    <h3>Does your condition affect you using the toilet or managing incontinence?</h3>
+    <p th:text="${toiletIncontinenceYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(toiletIncontinenceDescription)}">
+        <h3>Tell us about difficulties you have using the toilet or managing incontinence, and
+            how you manage them</h3>
+        <p th:utext="${toiletIncontinenceDescription}"></p>
+    </th:block>
+
+    <h3>Does your condition affect you dressing or undressing?</h3>
+    <p th:text="${dressingYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(dressingDescription)}">
+        <h3>Tell us about difficulties you have dressing and undressing, and how you manage
+            them</h3>
+        <p th:utext="${dressingDescription}"></p>
+    </th:block>
+
+
+    <h3>Does your condition affect you talking, listening and understanding?</h3>
+    <p th:text="${talkingYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(talkingDescription)}">
+        <h3>Tell us about difficulties you have talking, listening and understanding, and how
+            you manage them</h3>
+        <p th:utext="${talkingDescription}"></p>
+    </th:block>
+
+    <h3>Does your condition affect your ability to read?</h3>
+    <p th:text="${readingYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(readingDescription)}">
+        <h3>Tell us about difficulties you have reading words or symbols, and how you manage
+            them</h3>
+        <p th:utext="${readingDescription}"></p>
+    </th:block>
+
+
+    <h3>Does your condition affect you mixing with other people?</h3>
+    <p th:text="${mixingPeopleYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(mixingPeopleDescription)}">
+        <h3>Tell us about difficulties you have when mixing with other people and how you manage
+            them</h3>
+        <p th:utext="${mixingPeopleDescription}"></p>
+    </th:block>
+
+    <h3>Does your condition affect you managing your money?</h3>
+    <p th:text="${managingMoneyYesOrNo}"></p>
+    <th:block th:if="${!#strings.isEmpty(managingMoneyDescription)}">
+        <h3>Tell us about difficulties you have managing your money and how you manage them</h3>
+        <p th:utext="${managingMoneyDescription}"></p>
+    </th:block>
+</th:block>
+</html>

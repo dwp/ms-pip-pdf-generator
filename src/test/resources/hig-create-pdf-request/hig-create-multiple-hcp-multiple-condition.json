@@ -1,0 +1,126 @@
+{
+  "claimantId": "645a11207b05c5770aaa56af",
+  "submissionDate": "2025-06-03",
+  "registrationDetails": {
+    "personalDetails": {
+      "surname": "Menon",
+      "firstName": "Karthik",
+      "nationalInsuranceNumber": "RN000001A",
+      "dateOfBirth": "1990-01-01",
+      "postcode": "B14 1AA"
+    }
+  },
+  "formData": {
+    "aboutYourHealth": {
+      "conditions": [
+        {
+          "order": 1,
+          "condition": "HCP condition 1",
+          "approximateStartDate": "1 month ago",
+          "description": "This is the first condition"
+        },
+        {
+          "order": 2,
+          "condition": "Health condition 1",
+          "approximateStartDate": "1 month ago",
+          "description": "This is second condition"
+        },
+        {
+          "order": 3,
+          "condition": "Condition 3",
+          "approximateStartDate": "4 months ago",
+          "description": "Condition 3"
+        }
+      ],
+      "hcpDetails": [
+        {
+          "order": 1,
+          "name": "Health care professional 1",
+          "profession": "Profession1",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "asdasd",
+            "line2": "asdasd",
+            "townOrCity": "asdasd",
+            "postCode": "B161AA"
+          },
+          "lastContact": "12 months ago"
+        },
+        {
+          "order": 2,
+          "name": "Health care professional 2",
+          "profession": "Profession 2",
+          "phoneNumber": "07700777788",
+          "address": {
+            "line1": "Building 2",
+            "line2": "Street 2",
+            "townOrCity": "Town2",
+            "postCode": "B161AA"
+          },
+          "lastContact": "1 month ago"
+        },
+        {
+          "order": 3,
+          "name": "HCP 3",
+          "profession": "Profession 3",
+          "phoneNumber": "07700777799",
+          "address": {
+            "line1": "Building 3",
+            "line2": "Street 3",
+            "townOrCity": "Town 3",
+            "postCode": "B161AA"
+          },
+          "lastContact": "14 months"
+        }
+      ]
+    },
+    "dailyLiving": {
+      "preparingFood": {
+        "isAffected": "No"
+      },
+      "eatingDrinking": {
+        "isAffected": "No"
+      },
+      "managingTreatments": {
+        "isAffected": "No"
+      },
+      "washingBathing": {
+        "isAffected": "No"
+      },
+      "toiletIncontinence": {
+        "isAffected": "No"
+      },
+      "dressingUndressing": {
+        "isAffected": "No"
+      },
+      "talkingListening": {
+        "isAffected": "No"
+      },
+      "reading": {
+        "isAffected": "No"
+      },
+      "mixingPeople": {
+        "isAffected": "No"
+      },
+      "managingMoney": {
+        "isAffected": "No"
+      }
+    },
+    "mobility": {
+      "planningFollowing": {
+        "isAffected": "No"
+      },
+      "movingAround": {
+        "isAffected": "Yes",
+        "severity": {
+          "distance": "varies",
+          "notes": "Walking distance can vary"
+        },
+        "description": "Walking distance"
+      }
+    },
+    "other": {
+      "additionalInformation": "No"
+    }
+  }
+}
